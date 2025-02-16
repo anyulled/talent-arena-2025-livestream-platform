@@ -79,7 +79,7 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                         tags "Amazon Web Services - API Gateway"
                     }
 
-                    kinesis = infrastructureNode "Kinesis" "Video streaming"{
+                    kinesis = infrastructureNode "Kinesis" "Video streaming" {
                         tags "Amazon Web Services - Kinesis Video Streams"
                     }
                     sagemaker = infrastructureNode "SageMaker" "Machine learning model training and inference" {
@@ -96,10 +96,10 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                     s3 = infrastructureNode "Storage" "AWS - S3" {
                         tags "Amazon Web Services - Simple Storage Service"
                     }
-                    mediaConvert = infrastructureNode "MediaConvert" "Multimedia conversion"{
+                    mediaConvert = infrastructureNode "MediaConvert" "Multimedia conversion" {
                         tags "Amazon Web Services - Elemental MediaConvert"
                     }
-                    rekognition = infrastructureNode "Rekognition" "spam filter system"{
+                    rekognition = infrastructureNode "Rekognition" "spam filter system" {
                         tags "Amazon Web Services - Rekognition"
                     }
                     paymentLambda = infrastructureNode "Payment Service" {
@@ -108,6 +108,7 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                     deploymentNode "EC2 - User Service" {
                         tags "Amazon Web Services - EC2"
                         userInstance = containerInstance userManagament
+
                     }
 
                     deploymentNode "EC2 - Recommendation Engine" {
@@ -130,15 +131,23 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                             chatServiceInstance = containerInstance chatService
                         }
                     }
-                    deploymentNode "Amazon RDS" {
-                        tags "Amazon Web Services - RDS"
+                    group "Databases" {
+                        #tags "Amazon Web Services - RDS"
 
                         mysqlNode = deploymentNode "MySQL" {
                             tags "Amazon Web Services - RDS MySQL instance"
-                            userDBInstance = containerInstance userDB
-                            subscriptinDBInstance = containerInstance subscriptionDB
-                            streamDBInstance = containerInstance streamDB
-                            chatDBInstance = containerInstance chatDB
+                            userDBInstance = infrastructureNode "user DB" "MySQL" {
+                                tags "Amazon Web Services - RDS MySQL instance"
+                            }
+                            subscriptinDBInstance = infrastructureNode "subscription DB" {
+                                tags "Amazon Web Services - RDS MySQL instance"
+                            }
+                            streamDBInstance = infrastructureNode "stream DB" {
+                                tags "Amazon Web Services - DynamoDB"
+                            }
+                            chatDBInstance = infrastructureNode "Chat DB" "PostgreSQL" {
+                                tags "Amazon Web Services - DynamoDB"
+                            }
                         }
                     }
 
@@ -155,9 +164,9 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                     recomendationInstance -> sagemaker "Trains and runs recommendation models"
 
                     sagemaker -> chatDBInstance "Stores user recommendations"
+                    userInstance -> userDBInstance "Manages user info"
+                    liveStreaminAppInstance -> streamDBInstance "Caches and delivers VODs"
                 }
-                userInstance -> userDBInstance
-
             }
         }
     }
