@@ -55,7 +55,10 @@ workspace "Talent Arena" "System Design for a livestream platform" {
         }
 
         oauth = softwareSystem "Authentication System" "Third-party system for user authentication"
-        paymentSystem = softwareSystem "Payment System" "Third-party System integration"
+        paymentSystem = softwareSystem "Payment System" "Third-party System integration" {
+            container "Paypal" "Paypal payment gateway"
+            container "Stripe" "Stripe payment gateway"
+        }
 
         apiGateway -> userDB "Fetches user and stream metadata"
         userManagament -> oauth "Perform third-party authentication"
@@ -73,17 +76,8 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                         technology "AWS"
                         tags "Amazon Web Services - Region"
 
-                        route53 = infrastructureNode "Route 53" {
-                            tags "Amazon Web Services - Route 53"
-                        }
                         apiGatewayInfra = infrastructureNode "API Gateway" {
                             tags "Amazon Web Services - API Gateway"
-                        }
-                        kinesis = infrastructureNode "Kinesis" "Video streaming" {
-                            tags "Amazon Web Services - Kinesis Video Streams"
-                        }
-                        sagemaker = infrastructureNode "SageMaker" "Machine learning model training and inference" {
-                            tags "Amazon Web Services - SageMaker"
                         }
                         elb = infrastructureNode "Elastic Load Balancer" {
                             description "Automatically distributes incoming application traffic."
@@ -92,17 +86,38 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                         cdn = infrastructureNode "AWS CDN" "Amazon CloudFront" {
                             tags "Amazon Web Services - CloudFront"
                         }
-                        s3 = infrastructureNode "Storage" "AWS - S3" {
-                            tags "Amazon Web Services - Simple Storage Service"
+                        cognito = infrastructureNode "Cognito" "User authentication" {
+                            tags "Amazon Web Services - Cognito"
+                        }
+                        elasticCacheRedis = infrastructureNode "ElastiCache Redis" "chat message queue"{
+                            tags "Amazon Web Services - ElastiCache Redis"
+                        }
+                        fraudDetector = infrastructureNode "Fraud Detector" "Amazon Rekognition" {
+                            tags "Amazon Web Services - Fraud Detector"
                         }
                         mediaConvert = infrastructureNode "MediaConvert" "Multimedia conversion" {
                             tags "Amazon Web Services - Elemental MediaConvert"
                         }
-                        rekognition = infrastructureNode "Rekognition" "spam filter system" {
-                            tags "Amazon Web Services - Rekognition"
+                        route53 = infrastructureNode "Route 53" {
+                            tags "Amazon Web Services - Route 53"
+                        }
+                        kinesis = infrastructureNode "Kinesis" "Video streaming" {
+                            tags "Amazon Web Services - Kinesis Video Streams"
+                        }
+                        kinesisData = infrastructureNode "Kinesis Data Stream" "Data streaming" {
+                            tags "Amazon Web Services - Kinesis Data Streams"
                         }
                         paymentLambda = infrastructureNode "Payment Service" {
                             tags "Amazon Web Services - Lambda"
+                        }
+                        rekognition = infrastructureNode "Rekognition" "spam filter system" {
+                            tags "Amazon Web Services - Rekognition"
+                        }
+                        sagemaker = infrastructureNode "SageMaker" "Machine learning model training and inference" {
+                            tags "Amazon Web Services - SageMaker"
+                        }
+                        s3 = infrastructureNode "Storage" "AWS - S3" {
+                            tags "Amazon Web Services - Simple Storage Service"
                         }
 
                         deploymentNode "EC2 - User Service" {
@@ -129,13 +144,14 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                                 chatServiceInstance = containerInstance chatService
                             }
                         }
+
                         group "Databases" {
                             mysqlNode = deploymentNode "MySQL" {
                                 tags "Amazon Web Services - RDS MySQL instance"
                                 userDBInstance = infrastructureNode "user DB" "MySQL" {
                                     tags "Amazon Web Services - RDS MySQL instance"
                                 }
-                                subscriptinDBInstance = infrastructureNode "subscription DB" {
+                                subscriptionDBInstance = infrastructureNode "subscription DB" {
                                     tags "Amazon Web Services - RDS MySQL instance"
                                 }
                                 streamDBInstance = infrastructureNode "stream DB" {
@@ -147,26 +163,32 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                                 recommendationDBInstance = infrastructureNode "Recommendation DB" "PostgreSQL" {
                                     tags "Amazon Web Services - DynamoDB"
                                 }
+                                transactionDBInstance = infrastructureNode "Transaction DB" "PostgreSQL" {
+                                    tags "Amazon Web Services - DynamoDB"
+                                }
                             }
                         }
 
-                        route53 -> apiGatewayInfra "redirects user requests to the API gateway"
                         apiGatewayInfra -> elb "send user request to"
-                        userInstance -> paymentLambda "process user payments"
-                        liveStreaminAppInstance -> kinesis "video streaming"
-                        liveStreaminAppInstance -> cdn "Load static resources"
-                        liveStreaminAppInstance -> mediaConvert "Caches and delivers VODs"
-                        mediaConvert -> s3 "Multimedia conversion"
                         chatServiceInstance -> rekognition "spam filter system"
+                        chatServiceInstance -> elasticCacheRedis "Chat queue"
                         elb -> chatServiceInstance
                         elb -> liveStreaminAppInstance
-                        recomendationInstance -> sagemaker "Trains and runs recommendation models"
-
-                        sagemaker -> recommendationDBInstance "Stores user recommendations"
-                        rekognition -> chatDBInstance "spam filter system"
-                        userInstance -> userDBInstance "Manages user info"
-                        userInstance -> subscriptinDBInstance "Updates user subscription status"
+                        liveStreaminAppInstance -> cdn "Load static resources"
+                        liveStreaminAppInstance -> kinesis "video streaming"
+                        liveStreaminAppInstance -> kinesisData "user activity tracking"
+                        liveStreaminAppInstance -> mediaConvert "Caches and delivers VODs"
                         liveStreaminAppInstance -> streamDBInstance "Caches and delivers VODs"
+                        mediaConvert -> s3 "Multimedia conversion"
+                        recomendationInstance -> sagemaker "Trains and runs recommendation models"
+                        rekognition -> chatDBInstance "spam filter system"
+                        route53 -> apiGatewayInfra "redirects user requests to the API gateway"
+                        sagemaker -> recommendationDBInstance "Stores user recommendations"
+                        userInstance -> fraudDetector "Process payment frauds"
+                        fraudDetector -> paymentLambda "process user payments"
+                        fraudDetector -> transactionDBInstance "Store transaction logs"
+                        userInstance -> subscriptionDBInstance "Updates user subscription status"
+                        userInstance -> userDBInstance "Manages user info"
                     }
                 }
 
