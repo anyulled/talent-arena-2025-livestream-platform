@@ -4,12 +4,12 @@ workspace "Talent Arena" "System Design for a livestream platform" {
         user = person "User" "Watches live streams and interacts with the platform"
         streamer = person "Streamer" "Broadcasts live video streams"
 
-        databaseService = softwareSystem "Database System" "Stores user, subscription, and stream metadata"{
+        databaseService = softwareSystem "Database System" "Stores user, subscription, and stream metadata" {
             tags "Database"
-            userDB = container "User DB" "User records"{
+            userDB = container "User DB" "User records" {
                 tags "Database"
             }
-            subscriptionDB = container "subscription DB" "User Subscription information"{
+            subscriptionDB = container "subscription DB" "User Subscription information" {
                 tags "Database"
             }
             streamDB = container "Stream DB" "Streaming information" {
@@ -19,14 +19,14 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                 tags "Database"
             }
         }
-        rs = softwareSystem "Livestream System" "Livestream platform"{
+        rs = softwareSystem "Livestream System" "Livestream platform" {
             liveStreaming = container "Livestreaming App" "Handles video ingestion and real-time delivery"
-            contentDelivery = container CDN  "Network (CDN): Distributes live video streams efficiently"
+            contentDelivery = container CDN "Network (CDN): Distributes live video streams efficiently"
             chatService = container "chat Service" "Provides real-time interactions using Web Sockets"
             userManagament = container "User Management" "Handles login, subscriptions, and payments"
             paymentService = container "Payment Service" "Processes donations, ad revenue, and subscriptions"
             videoStorage = container "Video Storage" "Stores past streams for replay"
-            recommendationEngine = container "Recommendation Engine""Suggests streams based on user activity"
+            recommendationEngine = container "Recommendation Engine" "Suggests streams based on user activity"
 
             apiGateway = container "API Gateway" "Handles authentication, routing, and rate limiting"
 
@@ -75,8 +75,15 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                         tags "Amazon Web Services - Route 53"
                     }
 
-                    apiGatewayInfra = infrastructureNode "API Gateway"{
+                    apiGatewayInfra = infrastructureNode "API Gateway" {
                         tags "Amazon Web Services - API Gateway"
+                    }
+
+                    kinesis = infrastructureNode "Kinesis" "Video streaming"{
+                        tags "Amazon Web Services - Kinesis Video Streams"
+                    }
+                    sagemaker = infrastructureNode "SageMaker" "Machine learning model training and inference" {
+                        tags "Amazon Web Services - SageMaker"
                     }
 
                     elb = infrastructureNode "Elastic Load Balancer" {
@@ -89,13 +96,23 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                     s3 = infrastructureNode "Storage" "AWS - S3" {
                         tags "Amazon Web Services - Simple Storage Service"
                     }
-
-                    infrastructureNode "Payment Service" {
+                    mediaConvert = infrastructureNode "MediaConvert" "Multimedia conversion"{
+                        tags "Amazon Web Services - Elemental MediaConvert"
+                    }
+                    rekognition = infrastructureNode "Rekognition" "spam filter system"{
+                        tags "Amazon Web Services - Rekognition"
+                    }
+                    paymentLambda = infrastructureNode "Payment Service" {
                         tags "Amazon Web Services - Lambda"
                     }
                     deploymentNode "EC2 - User Service" {
                         tags "Amazon Web Services - EC2"
                         userInstance = containerInstance userManagament
+                    }
+
+                    deploymentNode "EC2 - Recommendation Engine" {
+                        tags "Amazon Web Services - EC2"
+                        recomendationInstance = containerInstance recommendationEngine
                     }
 
                     deploymentNode "Amazon - Auto Scaling Groups" "Manages elastic EC2 configuration" {
@@ -112,22 +129,34 @@ workspace "Talent Arena" "System Design for a livestream platform" {
                             softwareSystemInstance rs
                             chatServiceInstance = containerInstance chatService
                         }
-
-
                     }
                     deploymentNode "Amazon RDS" {
                         tags "Amazon Web Services - RDS"
 
-                        deploymentNode "MySQL" {
+                        mysqlNode = deploymentNode "MySQL" {
                             tags "Amazon Web Services - RDS MySQL instance"
                             userDBInstance = containerInstance userDB
                             subscriptinDBInstance = containerInstance subscriptionDB
                             streamDBInstance = containerInstance streamDB
                             chatDBInstance = containerInstance chatDB
-
                         }
                     }
+
+                    route53 -> apiGatewayInfra "redirects user requests to the API gateway"
+                    apiGatewayInfra -> elb "send user request to"
+                    liveStreaminAppInstance -> paymentLambda "process user payments"
+                    liveStreaminAppInstance -> kinesis "video streaming"
+                    liveStreaminAppInstance -> cdn "Load static resources"
+                    liveStreaminAppInstance -> mediaConvert "Caches and delivers VODs"
+                    mediaConvert -> s3 "Multimedia conversion"
+                    chatServiceInstance -> rekognition "spam filter system"
+                    elb -> chatServiceInstance
+                    elb -> liveStreaminAppInstance
+                    recomendationInstance -> sagemaker "Trains and runs recommendation models"
+
+                    sagemaker -> chatDBInstance "Stores user recommendations"
                 }
+                userInstance -> userDBInstance
 
             }
         }
@@ -137,17 +166,18 @@ workspace "Talent Arena" "System Design for a livestream platform" {
         theme default
         themes https://static.structurizr.com/themes/amazon-web-services-2023.01.31/theme.json
         themes https://static.structurizr.com/themes/amazon-web-services-2022.04.30/theme.json
+        themes https://static.structurizr.com/themes/amazon-web-services-2020.04.30/theme.json
 
         systemContext rs "SystemContextView" {
             description "High-level view of the reconciliation system architecture."
             include *
         }
 
-        container rs  livestream "Livestream component view"{
+        container rs livestream "Livestream component view" {
             include *
         }
 
-        container databaseService  database "System Databases"{
+        container databaseService database "System Databases" {
             include *
         }
 
@@ -156,7 +186,12 @@ workspace "Talent Arena" "System Design for a livestream platform" {
             include *
         }
 
+        branding {
+            logo images/logo.png
+        }
+
         styles {
+
             element "Container" {
                 shape roundedbox
             }

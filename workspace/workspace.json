@@ -4,7 +4,7 @@
   "documentation" : { },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-02-16T09:33:25Z",
+  "lastModifiedDate" : "2025-02-16T10:46:13Z",
   "model" : {
     "deploymentNodes" : [ {
       "children" : [ {
@@ -13,26 +13,53 @@
             "containerId" : "12",
             "deploymentGroups" : [ "Default" ],
             "environment" : "Production Deployment",
-            "id" : "65",
+            "id" : "69",
             "instanceId" : 1,
             "properties" : {
               "structurizr.dsl.identifier" : "userinstance"
             },
             "relationships" : [ {
               "description" : "Manages user info",
-              "destinationId" : "78",
-              "id" : "81",
+              "destinationId" : "85",
+              "id" : "86",
               "linkedRelationshipId" : "45",
-              "sourceId" : "65"
+              "sourceId" : "69"
             } ],
             "tags" : "Container Instance"
           } ],
           "environment" : "Production Deployment",
-          "id" : "64",
+          "id" : "68",
           "instances" : "1",
           "name" : "EC2 - User Service",
           "properties" : {
-            "structurizr.dsl.identifier" : "6d45112a-2f77-4885-96f4-7b4a81679f20"
+            "structurizr.dsl.identifier" : "9913b7f7-a24b-4691-910c-5d28c3347041"
+          },
+          "tags" : "Element,Deployment Node,Amazon Web Services - EC2"
+        }, {
+          "containerInstances" : [ {
+            "containerId" : "15",
+            "deploymentGroups" : [ "Default" ],
+            "environment" : "Production Deployment",
+            "id" : "71",
+            "instanceId" : 1,
+            "properties" : {
+              "structurizr.dsl.identifier" : "recomendationinstance"
+            },
+            "relationships" : [ {
+              "description" : "Trains and runs recommendation models",
+              "destinationId" : "61",
+              "id" : "110",
+              "sourceId" : "71",
+              "tags" : "Relationship"
+            } ],
+            "tags" : "Container Instance"
+          } ],
+          "environment" : "Production Deployment",
+          "id" : "70",
+          "instances" : "1",
+          "name" : "EC2 - Recommendation Engine",
+          "properties" : {
+            "structurizr.dsl.identifier" : "b88c88e2-9965-43d8-85fa-e5e192797e95"
           },
           "tags" : "Element,Deployment Node,Amazon Web Services - EC2"
         }, {
@@ -41,72 +68,102 @@
               "containerId" : "9",
               "deploymentGroups" : [ "Default" ],
               "environment" : "Production Deployment",
-              "id" : "69",
+              "id" : "75",
               "instanceId" : 1,
               "properties" : {
                 "structurizr.dsl.identifier" : "livestreaminappinstance"
               },
               "relationships" : [ {
+                "description" : "suggest content",
+                "destinationId" : "71",
+                "id" : "76",
+                "linkedRelationshipId" : "35",
+                "sourceId" : "75"
+              }, {
                 "description" : "Manage Users",
-                "destinationId" : "65",
-                "id" : "70",
+                "destinationId" : "69",
+                "id" : "77",
                 "linkedRelationshipId" : "41",
-                "sourceId" : "69"
+                "sourceId" : "75"
               }, {
                 "description" : "Allows instant messaging",
-                "destinationId" : "73",
-                "id" : "74",
+                "destinationId" : "80",
+                "id" : "81",
                 "linkedRelationshipId" : "40",
-                "sourceId" : "69"
+                "sourceId" : "75"
               }, {
                 "description" : "get stream info",
-                "destinationId" : "85",
-                "id" : "88",
+                "destinationId" : "92",
+                "id" : "93",
                 "linkedRelationshipId" : "36",
-                "sourceId" : "69"
+                "sourceId" : "75"
+              }, {
+                "description" : "process user payments",
+                "destinationId" : "67",
+                "id" : "102",
+                "sourceId" : "75",
+                "tags" : "Relationship"
+              }, {
+                "description" : "video streaming",
+                "destinationId" : "60",
+                "id" : "103",
+                "sourceId" : "75",
+                "tags" : "Relationship"
+              }, {
+                "description" : "Load static resources",
+                "destinationId" : "63",
+                "id" : "104",
+                "sourceId" : "75",
+                "tags" : "Relationship"
+              }, {
+                "description" : "Caches and delivers VODs",
+                "destinationId" : "65",
+                "id" : "105",
+                "sourceId" : "75",
+                "tags" : "Relationship"
               } ],
               "tags" : "Container Instance"
             } ],
             "description" : "This EC2 instance is part of an Auto Scaling Group",
             "environment" : "Production Deployment",
-            "id" : "67",
+            "id" : "73",
             "instances" : "1",
             "name" : "EC2 - LiveStreaming",
             "properties" : {
-              "structurizr.dsl.identifier" : "09c7aea9-8166-442d-8bb9-b0705afb6da6"
+              "structurizr.dsl.identifier" : "cc666e58-23d3-42dd-a5f0-7f9456890a82"
             },
             "softwareSystemInstances" : [ {
               "deploymentGroups" : [ "Default" ],
               "environment" : "Production Deployment",
-              "id" : "68",
+              "id" : "74",
               "instanceId" : 1,
               "properties" : {
-                "structurizr.dsl.identifier" : "23323c7e-3264-49fd-9f38-04ac04b7d9ae"
+                "structurizr.dsl.identifier" : "038af1cb-a1eb-467d-8de7-4af80fa0cfb7"
               },
               "relationships" : [ {
                 "description" : "Manages user info",
-                "destinationId" : "78",
-                "id" : "80",
+                "destinationId" : "85",
+                "id" : "88",
                 "linkedRelationshipId" : "47",
-                "sourceId" : "68"
+                "sourceId" : "74"
               }, {
                 "description" : "Updates user subscription status",
-                "destinationId" : "82",
-                "id" : "84",
+                "destinationId" : "89",
+                "id" : "91",
                 "linkedRelationshipId" : "34",
-                "sourceId" : "68"
+                "sourceId" : "74"
               }, {
                 "description" : "get stream info",
-                "destinationId" : "85",
-                "id" : "87",
+                "destinationId" : "92",
+                "id" : "95",
                 "linkedRelationshipId" : "38",
-                "sourceId" : "68"
+                "sourceId" : "74"
               }, {
                 "description" : "store chat history",
-                "destinationId" : "89",
-                "id" : "92",
+                "destinationId" : "96",
+                "id" : "99",
                 "linkedRelationshipId" : "29",
-                "sourceId" : "68"
+                "sourceId" : "74"
               } ],
               "softwareSystemId" : "8",
               "tags" : "Software System Instance"
@@ -117,66 +174,72 @@
               "containerId" : "11",
               "deploymentGroups" : [ "Default" ],
               "environment" : "Production Deployment",
-              "id" : "73",
+              "id" : "80",
               "instanceId" : 1,
               "properties" : {
                 "structurizr.dsl.identifier" : "chatserviceinstance"
               },
               "relationships" : [ {
                 "description" : "Gets user info",
-                "destinationId" : "65",
-                "id" : "75",
+                "destinationId" : "69",
+                "id" : "82",
                 "linkedRelationshipId" : "31",
-                "sourceId" : "73"
+                "sourceId" : "80"
               }, {
                 "description" : "store chat history",
-                "destinationId" : "89",
-                "id" : "91",
+                "destinationId" : "96",
+                "id" : "97",
                 "linkedRelationshipId" : "27",
-                "sourceId" : "73"
+                "sourceId" : "80"
+              }, {
+                "description" : "spam filter system",
+                "destinationId" : "66",
+                "id" : "107",
+                "sourceId" : "80",
+                "tags" : "Relationship"
               } ],
               "tags" : "Container Instance"
             } ],
             "description" : "This EC2 instance is part of an Auto Scaling Group",
             "environment" : "Production Deployment",
-            "id" : "71",
+            "id" : "78",
             "instances" : "1",
             "name" : "EC2 - Chat Service",
             "properties" : {
-              "structurizr.dsl.identifier" : "2b3b6669-b9c3-4d12-8e7a-66bae42cd33d"
+              "structurizr.dsl.identifier" : "4f96c2ae-de64-4f0f-af83-03f74e9e01ae"
             },
             "softwareSystemInstances" : [ {
               "deploymentGroups" : [ "Default" ],
               "environment" : "Production Deployment",
-              "id" : "72",
+              "id" : "79",
               "instanceId" : 1,
               "properties" : {
-                "structurizr.dsl.identifier" : "ff1a7b10-f439-4bf0-b7ea-f1b40bb9e366"
+                "structurizr.dsl.identifier" : "23224754-8e2d-4fa1-a0dc-f1c37d14440d"
               },
               "relationships" : [ {
                 "description" : "Manages user info",
-                "destinationId" : "78",
-                "id" : "79",
+                "destinationId" : "85",
+                "id" : "87",
                 "linkedRelationshipId" : "47",
-                "sourceId" : "72"
+                "sourceId" : "79"
               }, {
                 "description" : "Updates user subscription status",
-                "destinationId" : "82",
-                "id" : "83",
-                "linkedRelationshipId" : "34",
-                "sourceId" : "72"
-              }, {
-                "description" : "get stream info",
-                "destinationId" : "85",
-                "id" : "86",
-                "linkedRelationshipId" : "38",
-                "sourceId" : "72"
-              }, {
-                "description" : "store chat history",
                 "destinationId" : "89",
                 "id" : "90",
+                "linkedRelationshipId" : "34",
+                "sourceId" : "79"
+              }, {
+                "description" : "get stream info",
+                "destinationId" : "92",
+                "id" : "94",
+                "linkedRelationshipId" : "38",
+                "sourceId" : "79"
+              }, {
+                "description" : "store chat history",
+                "destinationId" : "96",
+                "id" : "98",
                 "linkedRelationshipId" : "29",
-                "sourceId" : "72"
+                "sourceId" : "79"
               } ],
               "softwareSystemId" : "8",
               "tags" : "Software System Instance"
@@ -185,11 +248,11 @@
           } ],
           "description" : "Manages elastic EC2 configuration",
           "environment" : "Production Deployment",
-          "id" : "66",
+          "id" : "72",
           "instances" : "1",
           "name" : "Amazon - Auto Scaling Groups",
           "properties" : {
-            "structurizr.dsl.identifier" : "d14e315b-5dea-4732-b811-bf7ec0642956"
+            "structurizr.dsl.identifier" : "a05821e7-4681-4d68-8c1f-a036c99e7568"
           },
           "tags" : "Element,Deployment Node,Amazon Web Services - Application Auto Scaling"
         }, {
@@ -198,7 +261,7 @@
               "containerId" : "4",
               "deploymentGroups" : [ "Default" ],
               "environment" : "Production Deployment",
-              "id" : "78",
+              "id" : "85",
               "instanceId" : 1,
               "properties" : {
                 "structurizr.dsl.identifier" : "userdbinstance"
@@ -208,7 +271,7 @@
               "containerId" : "5",
               "deploymentGroups" : [ "Default" ],
               "environment" : "Production Deployment",
-              "id" : "82",
+              "id" : "89",
               "instanceId" : 1,
               "properties" : {
                 "structurizr.dsl.identifier" : "subscriptindbinstance"
@@ -218,7 +281,7 @@
               "containerId" : "6",
               "deploymentGroups" : [ "Default" ],
               "environment" : "Production Deployment",
-              "id" : "85",
+              "id" : "92",
               "instanceId" : 1,
               "properties" : {
                 "structurizr.dsl.identifier" : "streamdbinstance"
@@ -228,7 +291,7 @@
               "containerId" : "7",
               "deploymentGroups" : [ "Default" ],
               "environment" : "Production Deployment",
-              "id" : "89",
+              "id" : "96",
               "instanceId" : 1,
               "properties" : {
                 "structurizr.dsl.identifier" : "chatdbinstance"
@@ -236,20 +299,20 @@
               "tags" : "Container Instance"
             } ],
             "environment" : "Production Deployment",
-            "id" : "77",
+            "id" : "84",
             "instances" : "1",
             "name" : "MySQL",
             "properties" : {
-              "structurizr.dsl.identifier" : "30dd2b20-5fe3-4b9b-b2dc-e0a0afbf7859"
+              "structurizr.dsl.identifier" : "mysqlnode"
             },
             "tags" : "Element,Deployment Node,Amazon Web Services - RDS MySQL instance"
           } ],
           "environment" : "Production Deployment",
-          "id" : "76",
+          "id" : "83",
           "instances" : "1",
           "name" : "Amazon RDS",
           "properties" : {
-            "structurizr.dsl.identifier" : "095cad00-eb2c-4bfe-8275-b1bce3abf7fd"
+            "structurizr.dsl.identifier" : "57cf9178-5f51-43b9-be8c-c4afdb4461e6"
           },
           "tags" : "Element,Deployment Node,Amazon Web Services - RDS"
         } ],
@@ -263,6 +326,13 @@
           "properties" : {
             "structurizr.dsl.identifier" : "route53"
           },
+          "relationships" : [ {
+            "description" : "redirects user requests to the API gateway",
+            "destinationId" : "59",
+            "id" : "100",
+            "sourceId" : "58",
+            "tags" : "Relationship"
+          } ],
           "tags" : "Element,Infrastructure Node,Amazon Web Services - Route 53"
         }, {
           "environment" : "Production Deployment",
@@ -271,20 +341,63 @@
           "properties" : {
             "structurizr.dsl.identifier" : "apigatewayinfra"
           },
+          "relationships" : [ {
+            "description" : "send user request to",
+            "destinationId" : "62",
+            "id" : "101",
+            "sourceId" : "59",
+            "tags" : "Relationship"
+          } ],
           "tags" : "Element,Infrastructure Node,Amazon Web Services - API Gateway"
+        }, {
+          "description" : "Video streaming",
+          "environment" : "Production Deployment",
+          "id" : "60",
+          "name" : "Kinesis",
+          "properties" : {
+            "structurizr.dsl.identifier" : "kinesis"
+          },
+          "tags" : "Element,Infrastructure Node,Amazon Web Services - Kinesis Video Streams"
+        }, {
+          "description" : "Machine learning model training and inference",
+          "environment" : "Production Deployment",
+          "id" : "61",
+          "name" : "SageMaker",
+          "properties" : {
+            "structurizr.dsl.identifier" : "sagemaker"
+          },
+          "relationships" : [ {
+            "description" : "Stores user recommendations",
+            "destinationId" : "96",
+            "id" : "111",
+            "sourceId" : "61",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Infrastructure Node,Amazon Web Services - SageMaker"
         }, {
           "description" : "Automatically distributes incoming application traffic.",
           "environment" : "Production Deployment",
-          "id" : "60",
+          "id" : "62",
           "name" : "Elastic Load Balancer",
           "properties" : {
             "structurizr.dsl.identifier" : "elb"
           },
+          "relationships" : [ {
+            "destinationId" : "80",
+            "id" : "108",
+            "sourceId" : "62",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "75",
+            "id" : "109",
+            "sourceId" : "62",
+            "tags" : "Relationship"
+          } ],
           "tags" : "Element,Infrastructure Node,Amazon Web Services - Elastic Load Balancing"
         }, {
           "description" : "Amazon CloudFront",
           "environment" : "Production Deployment",
-          "id" : "61",
+          "id" : "63",
           "name" : "AWS CDN",
           "properties" : {
             "structurizr.dsl.identifier" : "cdn"
@@ -293,18 +406,43 @@
         }, {
           "description" : "AWS - S3",
           "environment" : "Production Deployment",
-          "id" : "62",
+          "id" : "64",
           "name" : "Storage",
           "properties" : {
             "structurizr.dsl.identifier" : "s3"
           },
           "tags" : "Element,Infrastructure Node,Amazon Web Services - Simple Storage Service"
         }, {
+          "description" : "Multimedia conversion",
           "environment" : "Production Deployment",
-          "id" : "63",
+          "id" : "65",
+          "name" : "MediaConvert",
+          "properties" : {
+            "structurizr.dsl.identifier" : "mediaconvert"
+          },
+          "relationships" : [ {
+            "description" : "Multimedia conversion",
+            "destinationId" : "64",
+            "id" : "106",
+            "sourceId" : "65",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Infrastructure Node,Amazon Web Services - Elemental MediaConvert"
+        }, {
+          "description" : "spam filter system",
+          "environment" : "Production Deployment",
+          "id" : "66",
+          "name" : "Rekognition",
+          "properties" : {
+            "structurizr.dsl.identifier" : "rekognition"
+          },
+          "tags" : "Element,Infrastructure Node,Amazon Web Services - Rekognition"
+        }, {
+          "environment" : "Production Deployment",
+          "id" : "67",
           "name" : "Payment Service",
           "properties" : {
-            "structurizr.dsl.identifier" : "9fbedf2e-3288-4a4a-b17c-a9e2d3a5f08e"
+            "structurizr.dsl.identifier" : "paymentlambda"
           },
           "tags" : "Element,Infrastructure Node,Amazon Web Services - Lambda"
         } ],
@@ -321,7 +459,7 @@
       "instances" : "1",
       "name" : "Amazon Web Services",
       "properties" : {
-        "structurizr.dsl.identifier" : "bcf29b05-d11f-476d-b763-48c7b95a6877"
+        "structurizr.dsl.identifier" : "9dbe7495-1605-486d-8000-1c9ae15e78bc"
       },
       "tags" : "Element,Deployment Node,Amazon Web Services - Cloud Map"
     } ],
@@ -492,8 +630,7 @@
           "sourceId" : "9",
           "tags" : "Relationship"
         } ],
-        "tags" : "Element,Container",
-        "technology" : "{}"
+        "tags" : "Element,Container"
       }, {
         "description" : "Network (CDN): Distributes live video streams efficiently",
         "documentation" : { },
@@ -502,8 +639,7 @@
         "properties" : {
           "structurizr.dsl.identifier" : "contentdelivery"
         },
-        "tags" : "Element,Container",
-        "technology" : "{}"
+        "tags" : "Element,Container"
       }, {
         "description" : "Provides real-time interactions using Web Sockets",
         "documentation" : { },
@@ -531,8 +667,7 @@
           "sourceId" : "11",
           "tags" : "Relationship"
         } ],
-        "tags" : "Element,Container",
-        "technology" : "{}"
+        "tags" : "Element,Container"
       }, {
         "description" : "Handles login, subscriptions, and payments",
         "documentation" : { },
@@ -560,8 +695,7 @@
           "sourceId" : "12",
           "tags" : "Relationship"
         } ],
-        "tags" : "Element,Container",
-        "technology" : "{}"
+        "tags" : "Element,Container"
       }, {
         "description" : "Processes donations, ad revenue, and subscriptions",
         "documentation" : { },
@@ -589,8 +723,7 @@
           "sourceId" : "13",
           "tags" : "Relationship"
         } ],
-        "tags" : "Element,Container",
-        "technology" : "{}"
+        "tags" : "Element,Container"
       }, {
         "description" : "Stores past streams for replay",
         "documentation" : { },
@@ -606,8 +739,7 @@
           "sourceId" : "14",
           "tags" : "Relationship"
         } ],
-        "tags" : "Element,Container",
-        "technology" : "{}"
+        "tags" : "Element,Container"
       }, {
         "description" : "Suggests streams based on user activity",
         "documentation" : { },
@@ -616,8 +748,7 @@
         "properties" : {
           "structurizr.dsl.identifier" : "recommendationengine"
         },
-        "tags" : "Element,Container",
-        "technology" : "{}"
+        "tags" : "Element,Container"
       }, {
         "description" : "Handles authentication, routing, and rate limiting",
         "documentation" : { },
@@ -657,8 +788,7 @@
           "linkedRelationshipId" : "50",
           "sourceId" : "16"
         } ],
-        "tags" : "Element,Container",
-        "technology" : "{}"
+        "tags" : "Element,Container"
       } ],
       "description" : "Livestream platform",
       "documentation" : { },
@@ -736,11 +866,13 @@
   },
   "name" : "Talent Arena",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlICJUYWxlbnQgQXJlbmEiICJTeXN0ZW0gRGVzaWduIGZvciBhIGxpdmVzdHJlYW0gcGxhdGZvcm0iIHsKCiAgICBtb2RlbCB7CiAgICAgICAgdXNlciA9IHBlcnNvbiAiVXNlciIgIldhdGNoZXMgbGl2ZSBzdHJlYW1zIGFuZCBpbnRlcmFjdHMgd2l0aCB0aGUgcGxhdGZvcm0iCiAgICAgICAgc3RyZWFtZXIgPSBwZXJzb24gIlN0cmVhbWVyIiAiQnJvYWRjYXN0cyBsaXZlIHZpZGVvIHN0cmVhbXMiCgogICAgICAgIGRhdGFiYXNlU2VydmljZSA9IHNvZnR3YXJlU3lzdGVtICJEYXRhYmFzZSBTeXN0ZW0iICJTdG9yZXMgdXNlciwgc3Vic2NyaXB0aW9uLCBhbmQgc3RyZWFtIG1ldGFkYXRhInsKICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIHVzZXJEQiA9IGNvbnRhaW5lciAiVXNlciBEQiIgIlVzZXIgcmVjb3JkcyJ7CiAgICAgICAgICAgICAgICB0YWdzICJEYXRhYmFzZSIKICAgICAgICAgICAgfQogICAgICAgICAgICBzdWJzY3JpcHRpb25EQiA9IGNvbnRhaW5lciAic3Vic2NyaXB0aW9uIERCIiAiVXNlciBTdWJzY3JpcHRpb24gaW5mb3JtYXRpb24iewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgc3RyZWFtREIgPSBjb250YWluZXIgIlN0cmVhbSBEQiIgIlN0cmVhbWluZyBpbmZvcm1hdGlvbiIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgY2hhdERCID0gY29udGFpbmVyICJDaGF0IGluZm9ybWF0aW9uIERhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICB0YWdzICJEYXRhYmFzZSIKICAgICAgICAgICAgfQogICAgICAgIH0KICAgICAgICBycyA9IHNvZnR3YXJlU3lzdGVtICJMaXZlc3RyZWFtIFN5c3RlbSIgIkxpdmVzdHJlYW0gcGxhdGZvcm0iewogICAgICAgICAgICBsaXZlU3RyZWFtaW5nID0gY29udGFpbmVyICJMaXZlc3RyZWFtaW5nIEFwcCIgIkhhbmRsZXMgdmlkZW8gaW5nZXN0aW9uIGFuZCByZWFsLXRpbWUgZGVsaXZlcnkie30KICAgICAgICAgICAgY29udGVudERlbGl2ZXJ5ID0gY29udGFpbmVyIENETiAgIk5ldHdvcmsgKENETik6IERpc3RyaWJ1dGVzIGxpdmUgdmlkZW8gc3RyZWFtcyBlZmZpY2llbnRseSJ7fQogICAgICAgICAgICBjaGF0U2VydmljZSA9IGNvbnRhaW5lciAiY2hhdCBTZXJ2aWNlIiAiUHJvdmlkZXMgcmVhbC10aW1lIGludGVyYWN0aW9ucyB1c2luZyBXZWIgU29ja2V0cyJ7fQogICAgICAgICAgICB1c2VyTWFuYWdhbWVudCA9IGNvbnRhaW5lciAiVXNlciBNYW5hZ2VtZW50IiAiSGFuZGxlcyBsb2dpbiwgc3Vic2NyaXB0aW9ucywgYW5kIHBheW1lbnRzInt9CiAgICAgICAgICAgIHBheW1lbnRTZXJ2aWNlID0gY29udGFpbmVyICJQYXltZW50IFNlcnZpY2UiICJQcm9jZXNzZXMgZG9uYXRpb25zLCBhZCByZXZlbnVlLCBhbmQgc3Vic2NyaXB0aW9ucyJ7fQogICAgICAgICAgICB2aWRlb1N0b3JhZ2UgPSBjb250YWluZXIgIlZpZGVvIFN0b3JhZ2UiICJTdG9yZXMgcGFzdCBzdHJlYW1zIGZvciByZXBsYXkie30KICAgICAgICAgICAgcmVjb21tZW5kYXRpb25FbmdpbmUgPSBjb250YWluZXIgIlJlY29tbWVuZGF0aW9uIEVuZ2luZSIiU3VnZ2VzdHMgc3RyZWFtcyBiYXNlZCBvbiB1c2VyIGFjdGl2aXR5Int9CgogICAgICAgICAgICBhcGlHYXRld2F5ID0gY29udGFpbmVyICJBUEkgR2F0ZXdheSIgIkhhbmRsZXMgYXV0aGVudGljYXRpb24sIHJvdXRpbmcsIGFuZCByYXRlIGxpbWl0aW5nInt9CgogICAgICAgICAgICB1c2VyIC0+IGFwaUdhdGV3YXkgIlNlbmRzIHJlcXVlc3QiCiAgICAgICAgICAgIHVzZXIgLT4gY29udGVudERlbGl2ZXJ5ICJGZXRjaGVzIHZpZGVvIHN0cmVhbXMgZnJvbSBjbG9zZXN0IENETiBub2RlIgogICAgICAgICAgICB1c2VyIC0+IGNoYXRzZXJ2aWNlICJTZW5kcy9yZWNlaXZlcyBjaGF0IG1lc3NhZ2VzIgogICAgICAgICAgICB1c2VyIC0+IHZpZGVvU3RvcmFnZSAiUmVxdWVzdHMgVk9EIHBsYXliYWNrIgogICAgICAgICAgICBzdHJlYW1lciAtPiBhcGlHYXRld2F5ICJTdGFydHMgbGl2ZSBzdHJlYW0iCgogICAgICAgICAgICBhcGlHYXRld2F5IC0+IGxpdmVTdHJlYW1pbmcgIlJvdXRlcyBzdHJlYW1pbmcgcmVxdWVzdHMiCiAgICAgICAgICAgIGFwaUdhdGV3YXkgLT4gY2hhdHNlcnZpY2UgIlJvdXRlcyBjaGF0IG1lc3NhZ2VzIgoKICAgICAgICAgICAgYXBpR2F0ZXdheSAtPiBwYXltZW50U2VydmljZSAiUHJvY2Vzc2VzIHBheW1lbnRzIGFuZCBzdWJzY3JpcHRpb25zIgoKICAgICAgICAgICAgY2hhdFNlcnZpY2UgLT4gY2hhdERCICJzdG9yZSBjaGF0IGhpc3RvcnkiCiAgICAgICAgICAgIGNoYXRTZXJ2aWNlIC0+IHVzZXJNYW5hZ2FtZW50ICJHZXRzIHVzZXIgaW5mbyIKICAgICAgICAgICAgcGF5bWVudFNlcnZpY2UgLT4gc3Vic2NyaXB0aW9uREIgIlVwZGF0ZXMgdXNlciBzdWJzY3JpcHRpb24gc3RhdHVzIgogICAgICAgICAgICBsaXZlU3RyZWFtaW5nIC0+IHJlY29tbWVuZGF0aW9uRW5naW5lICJzdWdnZXN0IGNvbnRlbnQiCiAgICAgICAgICAgIGxpdmVTdHJlYW1pbmcgLT4gc3RyZWFtREIgImdldCBzdHJlYW0gaW5mbyIKICAgICAgICAgICAgbGl2ZVN0cmVhbWluZyAtPiBjb250ZW50RGVsaXZlcnkgIkRpc3RyaWJ1dGVzIGVuY29kZWQgdmlkZW8gc3RyZWFtcyIKICAgICAgICAgICAgbGl2ZVN0cmVhbWluZyAtPiBjaGF0U2VydmljZSAiQWxsb3dzIGluc3RhbnQgbWVzc2FnaW5nIgogICAgICAgICAgICBsaXZlU3RyZWFtaW5nIC0+IHVzZXJNYW5hZ2FtZW50ICJNYW5hZ2UgVXNlcnMiCiAgICAgICAgICAgIGxpdmVTdHJlYW1pbmcgLT4gdmlkZW9TdG9yYWdlICJBcmNoaXZlcyBjb21wbGV0ZWQgc3RyZWFtcyBmb3IgVk9EIHBsYXliYWNrIgogICAgICAgICAgICBsaXZlU3RyZWFtaW5nIC0+IHBheW1lbnRTZXJ2aWNlICJwcm9jZXNzIHVzZXIgcGF5bWVudHMiCiAgICAgICAgICAgIHZpZGVvU3RvcmFnZSAtPiBjb250ZW50RGVsaXZlcnkgIkNhY2hlcyBhbmQgZGVsaXZlcnMgVk9EcyIKCiAgICAgICAgICAgIHVzZXJNYW5hZ2FtZW50IC0+IHVzZXJEQiAiTWFuYWdlcyB1c2VyIGluZm8iCiAgICAgICAgfQoKICAgICAgICBvYXV0aCA9IHNvZnR3YXJlU3lzdGVtICJBdXRoZW50aWNhdGlvbiBTeXN0ZW0iICJUaGlyZC1wYXJ0eSBzeXN0ZW0gZm9yIHVzZXIgYXV0aGVudGljYXRpb24iCiAgICAgICAgcGF5bWVudFN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJQYXltZW50IFN5c3RlbSIgIlRoaXJkLXBhcnR5IFN5c3RlbSBpbnRlZ3JhdGlvbiIKCiAgICAgICAgYXBpR2F0ZXdheSAtPiB1c2VyREIgIkZldGNoZXMgdXNlciBhbmQgc3RyZWFtIG1ldGFkYXRhIgogICAgICAgIHVzZXJNYW5hZ2FtZW50IC0+IG9hdXRoICJQZXJmb3JtIHRoaXJkLXBhcnR5IGF1dGhlbnRpY2F0aW9uIgogICAgICAgIHBheW1lbnRTZXJ2aWNlIC0+IHBheW1lbnRTeXN0ZW0gIkhhbmRsZXMgZXh0ZXJuYWwgcGF5bWVudCBvcHRpb25zIgoKICAgICAgICBwcm9kID0gZGVwbG95bWVudEVudmlyb25tZW50ICJQcm9kdWN0aW9uIERlcGxveW1lbnQiIHsKICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIkFtYXpvbiBXZWIgU2VydmljZXMiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIkFtYXpvbiBXZWIgU2VydmljZXMgLSBDbG91ZCBNYXAiCiAgICAgICAgICAgICAgICByZWdpb24gPSBkZXBsb3ltZW50Tm9kZSAiZXUtd2VzdC0yIiB7CiAgICAgICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIkFXUyAtIEV1cm9wZSBab25lIgogICAgICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIkFXUyIKICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gUmVnaW9uIgoKICAgICAgICAgICAgICAgICAgICByb3V0ZTUzID0gaW5mcmFzdHJ1Y3R1cmVOb2RlICJSb3V0ZSA1MyIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gUm91dGUgNTMiCiAgICAgICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICAgICBhcGlHYXRld2F5SW5mcmEgPSBpbmZyYXN0cnVjdHVyZU5vZGUgIkFQSSBHYXRld2F5InsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiQW1hem9uIFdlYiBTZXJ2aWNlcyAtIEFQSSBHYXRld2F5IgogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgZWxiID0gaW5mcmFzdHJ1Y3R1cmVOb2RlICJFbGFzdGljIExvYWQgQmFsYW5jZXIiIHsKICAgICAgICAgICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIkF1dG9tYXRpY2FsbHkgZGlzdHJpYnV0ZXMgaW5jb21pbmcgYXBwbGljYXRpb24gdHJhZmZpYy4iCiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgIkFtYXpvbiBXZWIgU2VydmljZXMgLSBFbGFzdGljIExvYWQgQmFsYW5jaW5nIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBjZG4gPSBpbmZyYXN0cnVjdHVyZU5vZGUgIkFXUyBDRE4iICJBbWF6b24gQ2xvdWRGcm9udCIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gQ2xvdWRGcm9udCIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgczMgPSBpbmZyYXN0cnVjdHVyZU5vZGUgIlN0b3JhZ2UiICJBV1MgLSBTMyIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gU2ltcGxlIFN0b3JhZ2UgU2VydmljZSIKICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgIGluZnJhc3RydWN0dXJlTm9kZSAiUGF5bWVudCBTZXJ2aWNlIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgIkFtYXpvbiBXZWIgU2VydmljZXMgLSBMYW1iZGEiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJFQzIgLSBVc2VyIFNlcnZpY2UiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiQW1hem9uIFdlYiBTZXJ2aWNlcyAtIEVDMiIKICAgICAgICAgICAgICAgICAgICAgICAgdXNlckluc3RhbmNlID0gY29udGFpbmVySW5zdGFuY2UgdXNlck1hbmFnYW1lbnQKICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJBbWF6b24gLSBBdXRvIFNjYWxpbmcgR3JvdXBzIiAiTWFuYWdlcyBlbGFzdGljIEVDMiBjb25maWd1cmF0aW9uIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgIkFtYXpvbiBXZWIgU2VydmljZXMgLSBBcHBsaWNhdGlvbiBBdXRvIFNjYWxpbmciCgogICAgICAgICAgICAgICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiRUMyIC0gTGl2ZVN0cmVhbWluZyIgIlRoaXMgRUMyIGluc3RhbmNlIGlzIHBhcnQgb2YgYW4gQXV0byBTY2FsaW5nIEdyb3VwIiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gRUMyIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgc29mdHdhcmVTeXN0ZW1JbnN0YW5jZSBycwogICAgICAgICAgICAgICAgICAgICAgICAgICAgbGl2ZVN0cmVhbWluQXBwSW5zdGFuY2UgPSBjb250YWluZXJJbnN0YW5jZSBsaXZlU3RyZWFtaW5nCgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJFQzIgLSBDaGF0IFNlcnZpY2UiICJUaGlzIEVDMiBpbnN0YW5jZSBpcyBwYXJ0IG9mIGFuIEF1dG8gU2NhbGluZyBHcm91cCIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiQW1hem9uIFdlYiBTZXJ2aWNlcyAtIEVDMiIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNvZnR3YXJlU3lzdGVtSW5zdGFuY2UgcnMKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNoYXRTZXJ2aWNlSW5zdGFuY2UgPSBjb250YWluZXJJbnN0YW5jZSBjaGF0U2VydmljZQogICAgICAgICAgICAgICAgICAgICAgICB9CgoKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIkFtYXpvbiBSRFMiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiQW1hem9uIFdlYiBTZXJ2aWNlcyAtIFJEUyIKCiAgICAgICAgICAgICAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJNeVNRTCIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiQW1hem9uIFdlYiBTZXJ2aWNlcyAtIFJEUyBNeVNRTCBpbnN0YW5jZSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVzZXJEQkluc3RhbmNlID0gY29udGFpbmVySW5zdGFuY2UgdXNlckRCCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdWJzY3JpcHRpbkRCSW5zdGFuY2UgPSBjb250YWluZXJJbnN0YW5jZSBzdWJzY3JpcHRpb25EQgogICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RyZWFtREJJbnN0YW5jZSA9IGNvbnRhaW5lckluc3RhbmNlIHN0cmVhbURCCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjaGF0REJJbnN0YW5jZSA9IGNvbnRhaW5lckluc3RhbmNlIGNoYXREQgoKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9CgogICAgdmlld3MgewogICAgICAgIHRoZW1lIGRlZmF1bHQKICAgICAgICB0aGVtZXMgaHR0cHM6Ly9zdGF0aWMuc3RydWN0dXJpenIuY29tL3RoZW1lcy9hbWF6b24td2ViLXNlcnZpY2VzLTIwMjMuMDEuMzEvdGhlbWUuanNvbgogICAgICAgIHRoZW1lcyBodHRwczovL3N0YXRpYy5zdHJ1Y3R1cml6ci5jb20vdGhlbWVzL2FtYXpvbi13ZWItc2VydmljZXMtMjAyMi4wNC4zMC90aGVtZS5qc29uCgogICAgICAgIHN5c3RlbUNvbnRleHQgcnMgIlN5c3RlbUNvbnRleHRWaWV3IiB7CiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJIaWdoLWxldmVsIHZpZXcgb2YgdGhlIHJlY29uY2lsaWF0aW9uIHN5c3RlbSBhcmNoaXRlY3R1cmUuIgogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICB9CgogICAgICAgIGNvbnRhaW5lciBycyAgbGl2ZXN0cmVhbSAiTGl2ZXN0cmVhbSBjb21wb25lbnQgdmlldyJ7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgIH0KCiAgICAgICAgY29udGFpbmVyIGRhdGFiYXNlU2VydmljZSAgZGF0YWJhc2UgIlN5c3RlbSBEYXRhYmFzZXMiewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICB9CgogICAgICAgIGRlcGxveW1lbnQgcnMgcHJvZCAiUHJvZHVjdGlvbiIgewogICAgICAgICAgICB0aXRsZSAiUHJvZHVjdGlvbiBkZXBsb3ltZW50IG9uIEFXUyIKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewogICAgICAgICAgICBlbGVtZW50ICJDb250YWluZXIiIHsKICAgICAgICAgICAgICAgIHNoYXBlIHJvdW5kZWRib3gKICAgICAgICAgICAgfQoKICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGN5bGluZGVyCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9CgoKfQ=="
+    "structurizr.dsl" : "d29ya3NwYWNlICJUYWxlbnQgQXJlbmEiICJTeXN0ZW0gRGVzaWduIGZvciBhIGxpdmVzdHJlYW0gcGxhdGZvcm0iIHsKCiAgICBtb2RlbCB7CiAgICAgICAgdXNlciA9IHBlcnNvbiAiVXNlciIgIldhdGNoZXMgbGl2ZSBzdHJlYW1zIGFuZCBpbnRlcmFjdHMgd2l0aCB0aGUgcGxhdGZvcm0iCiAgICAgICAgc3RyZWFtZXIgPSBwZXJzb24gIlN0cmVhbWVyIiAiQnJvYWRjYXN0cyBsaXZlIHZpZGVvIHN0cmVhbXMiCgogICAgICAgIGRhdGFiYXNlU2VydmljZSA9IHNvZnR3YXJlU3lzdGVtICJEYXRhYmFzZSBTeXN0ZW0iICJTdG9yZXMgdXNlciwgc3Vic2NyaXB0aW9uLCBhbmQgc3RyZWFtIG1ldGFkYXRhIiB7CiAgICAgICAgICAgIHRhZ3MgIkRhdGFiYXNlIgogICAgICAgICAgICB1c2VyREIgPSBjb250YWluZXIgIlVzZXIgREIiICJVc2VyIHJlY29yZHMiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIkRhdGFiYXNlIgogICAgICAgICAgICB9CiAgICAgICAgICAgIHN1YnNjcmlwdGlvbkRCID0gY29udGFpbmVyICJzdWJzY3JpcHRpb24gREIiICJVc2VyIFN1YnNjcmlwdGlvbiBpbmZvcm1hdGlvbiIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgc3RyZWFtREIgPSBjb250YWluZXIgIlN0cmVhbSBEQiIgIlN0cmVhbWluZyBpbmZvcm1hdGlvbiIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgY2hhdERCID0gY29udGFpbmVyICJDaGF0IGluZm9ybWF0aW9uIERhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICB0YWdzICJEYXRhYmFzZSIKICAgICAgICAgICAgfQogICAgICAgIH0KICAgICAgICBycyA9IHNvZnR3YXJlU3lzdGVtICJMaXZlc3RyZWFtIFN5c3RlbSIgIkxpdmVzdHJlYW0gcGxhdGZvcm0iIHsKICAgICAgICAgICAgbGl2ZVN0cmVhbWluZyA9IGNvbnRhaW5lciAiTGl2ZXN0cmVhbWluZyBBcHAiICJIYW5kbGVzIHZpZGVvIGluZ2VzdGlvbiBhbmQgcmVhbC10aW1lIGRlbGl2ZXJ5IgogICAgICAgICAgICBjb250ZW50RGVsaXZlcnkgPSBjb250YWluZXIgQ0ROICJOZXR3b3JrIChDRE4pOiBEaXN0cmlidXRlcyBsaXZlIHZpZGVvIHN0cmVhbXMgZWZmaWNpZW50bHkiCiAgICAgICAgICAgIGNoYXRTZXJ2aWNlID0gY29udGFpbmVyICJjaGF0IFNlcnZpY2UiICJQcm92aWRlcyByZWFsLXRpbWUgaW50ZXJhY3Rpb25zIHVzaW5nIFdlYiBTb2NrZXRzIgogICAgICAgICAgICB1c2VyTWFuYWdhbWVudCA9IGNvbnRhaW5lciAiVXNlciBNYW5hZ2VtZW50IiAiSGFuZGxlcyBsb2dpbiwgc3Vic2NyaXB0aW9ucywgYW5kIHBheW1lbnRzIgogICAgICAgICAgICBwYXltZW50U2VydmljZSA9IGNvbnRhaW5lciAiUGF5bWVudCBTZXJ2aWNlIiAiUHJvY2Vzc2VzIGRvbmF0aW9ucywgYWQgcmV2ZW51ZSwgYW5kIHN1YnNjcmlwdGlvbnMiCiAgICAgICAgICAgIHZpZGVvU3RvcmFnZSA9IGNvbnRhaW5lciAiVmlkZW8gU3RvcmFnZSIgIlN0b3JlcyBwYXN0IHN0cmVhbXMgZm9yIHJlcGxheSIKICAgICAgICAgICAgcmVjb21tZW5kYXRpb25FbmdpbmUgPSBjb250YWluZXIgIlJlY29tbWVuZGF0aW9uIEVuZ2luZSIgIlN1Z2dlc3RzIHN0cmVhbXMgYmFzZWQgb24gdXNlciBhY3Rpdml0eSIKCiAgICAgICAgICAgIGFwaUdhdGV3YXkgPSBjb250YWluZXIgIkFQSSBHYXRld2F5IiAiSGFuZGxlcyBhdXRoZW50aWNhdGlvbiwgcm91dGluZywgYW5kIHJhdGUgbGltaXRpbmciCgogICAgICAgICAgICB1c2VyIC0+IGFwaUdhdGV3YXkgIlNlbmRzIHJlcXVlc3QiCiAgICAgICAgICAgIHVzZXIgLT4gY29udGVudERlbGl2ZXJ5ICJGZXRjaGVzIHZpZGVvIHN0cmVhbXMgZnJvbSBjbG9zZXN0IENETiBub2RlIgogICAgICAgICAgICB1c2VyIC0+IGNoYXRzZXJ2aWNlICJTZW5kcy9yZWNlaXZlcyBjaGF0IG1lc3NhZ2VzIgogICAgICAgICAgICB1c2VyIC0+IHZpZGVvU3RvcmFnZSAiUmVxdWVzdHMgVk9EIHBsYXliYWNrIgogICAgICAgICAgICBzdHJlYW1lciAtPiBhcGlHYXRld2F5ICJTdGFydHMgbGl2ZSBzdHJlYW0iCgogICAgICAgICAgICBhcGlHYXRld2F5IC0+IGxpdmVTdHJlYW1pbmcgIlJvdXRlcyBzdHJlYW1pbmcgcmVxdWVzdHMiCiAgICAgICAgICAgIGFwaUdhdGV3YXkgLT4gY2hhdHNlcnZpY2UgIlJvdXRlcyBjaGF0IG1lc3NhZ2VzIgoKICAgICAgICAgICAgYXBpR2F0ZXdheSAtPiBwYXltZW50U2VydmljZSAiUHJvY2Vzc2VzIHBheW1lbnRzIGFuZCBzdWJzY3JpcHRpb25zIgoKICAgICAgICAgICAgY2hhdFNlcnZpY2UgLT4gY2hhdERCICJzdG9yZSBjaGF0IGhpc3RvcnkiCiAgICAgICAgICAgIGNoYXRTZXJ2aWNlIC0+IHVzZXJNYW5hZ2FtZW50ICJHZXRzIHVzZXIgaW5mbyIKICAgICAgICAgICAgcGF5bWVudFNlcnZpY2UgLT4gc3Vic2NyaXB0aW9uREIgIlVwZGF0ZXMgdXNlciBzdWJzY3JpcHRpb24gc3RhdHVzIgogICAgICAgICAgICBsaXZlU3RyZWFtaW5nIC0+IHJlY29tbWVuZGF0aW9uRW5naW5lICJzdWdnZXN0IGNvbnRlbnQiCiAgICAgICAgICAgIGxpdmVTdHJlYW1pbmcgLT4gc3RyZWFtREIgImdldCBzdHJlYW0gaW5mbyIKICAgICAgICAgICAgbGl2ZVN0cmVhbWluZyAtPiBjb250ZW50RGVsaXZlcnkgIkRpc3RyaWJ1dGVzIGVuY29kZWQgdmlkZW8gc3RyZWFtcyIKICAgICAgICAgICAgbGl2ZVN0cmVhbWluZyAtPiBjaGF0U2VydmljZSAiQWxsb3dzIGluc3RhbnQgbWVzc2FnaW5nIgogICAgICAgICAgICBsaXZlU3RyZWFtaW5nIC0+IHVzZXJNYW5hZ2FtZW50ICJNYW5hZ2UgVXNlcnMiCiAgICAgICAgICAgIGxpdmVTdHJlYW1pbmcgLT4gdmlkZW9TdG9yYWdlICJBcmNoaXZlcyBjb21wbGV0ZWQgc3RyZWFtcyBmb3IgVk9EIHBsYXliYWNrIgogICAgICAgICAgICBsaXZlU3RyZWFtaW5nIC0+IHBheW1lbnRTZXJ2aWNlICJwcm9jZXNzIHVzZXIgcGF5bWVudHMiCiAgICAgICAgICAgIHZpZGVvU3RvcmFnZSAtPiBjb250ZW50RGVsaXZlcnkgIkNhY2hlcyBhbmQgZGVsaXZlcnMgVk9EcyIKCiAgICAgICAgICAgIHVzZXJNYW5hZ2FtZW50IC0+IHVzZXJEQiAiTWFuYWdlcyB1c2VyIGluZm8iCiAgICAgICAgfQoKICAgICAgICBvYXV0aCA9IHNvZnR3YXJlU3lzdGVtICJBdXRoZW50aWNhdGlvbiBTeXN0ZW0iICJUaGlyZC1wYXJ0eSBzeXN0ZW0gZm9yIHVzZXIgYXV0aGVudGljYXRpb24iCiAgICAgICAgcGF5bWVudFN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJQYXltZW50IFN5c3RlbSIgIlRoaXJkLXBhcnR5IFN5c3RlbSBpbnRlZ3JhdGlvbiIKCiAgICAgICAgYXBpR2F0ZXdheSAtPiB1c2VyREIgIkZldGNoZXMgdXNlciBhbmQgc3RyZWFtIG1ldGFkYXRhIgogICAgICAgIHVzZXJNYW5hZ2FtZW50IC0+IG9hdXRoICJQZXJmb3JtIHRoaXJkLXBhcnR5IGF1dGhlbnRpY2F0aW9uIgogICAgICAgIHBheW1lbnRTZXJ2aWNlIC0+IHBheW1lbnRTeXN0ZW0gIkhhbmRsZXMgZXh0ZXJuYWwgcGF5bWVudCBvcHRpb25zIgoKICAgICAgICBwcm9kID0gZGVwbG95bWVudEVudmlyb25tZW50ICJQcm9kdWN0aW9uIERlcGxveW1lbnQiIHsKICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIkFtYXpvbiBXZWIgU2VydmljZXMiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIkFtYXpvbiBXZWIgU2VydmljZXMgLSBDbG91ZCBNYXAiCiAgICAgICAgICAgICAgICByZWdpb24gPSBkZXBsb3ltZW50Tm9kZSAiZXUtd2VzdC0yIiB7CiAgICAgICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIkFXUyAtIEV1cm9wZSBab25lIgogICAgICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIkFXUyIKICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gUmVnaW9uIgoKICAgICAgICAgICAgICAgICAgICByb3V0ZTUzID0gaW5mcmFzdHJ1Y3R1cmVOb2RlICJSb3V0ZSA1MyIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gUm91dGUgNTMiCiAgICAgICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICAgICBhcGlHYXRld2F5SW5mcmEgPSBpbmZyYXN0cnVjdHVyZU5vZGUgIkFQSSBHYXRld2F5IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgIkFtYXpvbiBXZWIgU2VydmljZXMgLSBBUEkgR2F0ZXdheSIKICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgIGtpbmVzaXMgPSBpbmZyYXN0cnVjdHVyZU5vZGUgIktpbmVzaXMiICJWaWRlbyBzdHJlYW1pbmciewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gS2luZXNpcyBWaWRlbyBTdHJlYW1zIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBzYWdlbWFrZXIgPSBpbmZyYXN0cnVjdHVyZU5vZGUgIlNhZ2VNYWtlciIgIk1hY2hpbmUgbGVhcm5pbmcgbW9kZWwgdHJhaW5pbmcgYW5kIGluZmVyZW5jZSIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gU2FnZU1ha2VyIgogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgZWxiID0gaW5mcmFzdHJ1Y3R1cmVOb2RlICJFbGFzdGljIExvYWQgQmFsYW5jZXIiIHsKICAgICAgICAgICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIkF1dG9tYXRpY2FsbHkgZGlzdHJpYnV0ZXMgaW5jb21pbmcgYXBwbGljYXRpb24gdHJhZmZpYy4iCiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgIkFtYXpvbiBXZWIgU2VydmljZXMgLSBFbGFzdGljIExvYWQgQmFsYW5jaW5nIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBjZG4gPSBpbmZyYXN0cnVjdHVyZU5vZGUgIkFXUyBDRE4iICJBbWF6b24gQ2xvdWRGcm9udCIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gQ2xvdWRGcm9udCIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgczMgPSBpbmZyYXN0cnVjdHVyZU5vZGUgIlN0b3JhZ2UiICJBV1MgLSBTMyIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gU2ltcGxlIFN0b3JhZ2UgU2VydmljZSIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgbWVkaWFDb252ZXJ0ID0gaW5mcmFzdHJ1Y3R1cmVOb2RlICJNZWRpYUNvbnZlcnQiICJNdWx0aW1lZGlhIGNvbnZlcnNpb24iewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gRWxlbWVudGFsIE1lZGlhQ29udmVydCIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgcmVrb2duaXRpb24gPSBpbmZyYXN0cnVjdHVyZU5vZGUgIlJla29nbml0aW9uIiAic3BhbSBmaWx0ZXIgc3lzdGVtInsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiQW1hem9uIFdlYiBTZXJ2aWNlcyAtIFJla29nbml0aW9uIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBwYXltZW50TGFtYmRhID0gaW5mcmFzdHJ1Y3R1cmVOb2RlICJQYXltZW50IFNlcnZpY2UiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiQW1hem9uIFdlYiBTZXJ2aWNlcyAtIExhbWJkYSIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIkVDMiAtIFVzZXIgU2VydmljZSIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gRUMyIgogICAgICAgICAgICAgICAgICAgICAgICB1c2VySW5zdGFuY2UgPSBjb250YWluZXJJbnN0YW5jZSB1c2VyTWFuYWdhbWVudAogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIkVDMiAtIFJlY29tbWVuZGF0aW9uIEVuZ2luZSIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gRUMyIgogICAgICAgICAgICAgICAgICAgICAgICByZWNvbWVuZGF0aW9uSW5zdGFuY2UgPSBjb250YWluZXJJbnN0YW5jZSByZWNvbW1lbmRhdGlvbkVuZ2luZQogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIkFtYXpvbiAtIEF1dG8gU2NhbGluZyBHcm91cHMiICJNYW5hZ2VzIGVsYXN0aWMgRUMyIGNvbmZpZ3VyYXRpb24iIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiQW1hem9uIFdlYiBTZXJ2aWNlcyAtIEFwcGxpY2F0aW9uIEF1dG8gU2NhbGluZyIKCiAgICAgICAgICAgICAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJFQzIgLSBMaXZlU3RyZWFtaW5nIiAiVGhpcyBFQzIgaW5zdGFuY2UgaXMgcGFydCBvZiBhbiBBdXRvIFNjYWxpbmcgR3JvdXAiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgIkFtYXpvbiBXZWIgU2VydmljZXMgLSBFQzIiCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBzb2Z0d2FyZVN5c3RlbUluc3RhbmNlIHJzCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBsaXZlU3RyZWFtaW5BcHBJbnN0YW5jZSA9IGNvbnRhaW5lckluc3RhbmNlIGxpdmVTdHJlYW1pbmcKCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIkVDMiAtIENoYXQgU2VydmljZSIgIlRoaXMgRUMyIGluc3RhbmNlIGlzIHBhcnQgb2YgYW4gQXV0byBTY2FsaW5nIEdyb3VwIiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJBbWF6b24gV2ViIFNlcnZpY2VzIC0gRUMyIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgc29mdHdhcmVTeXN0ZW1JbnN0YW5jZSBycwogICAgICAgICAgICAgICAgICAgICAgICAgICAgY2hhdFNlcnZpY2VJbnN0YW5jZSA9IGNvbnRhaW5lckluc3RhbmNlIGNoYXRTZXJ2aWNlCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIkFtYXpvbiBSRFMiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiQW1hem9uIFdlYiBTZXJ2aWNlcyAtIFJEUyIKCiAgICAgICAgICAgICAgICAgICAgICAgIG15c3FsTm9kZSA9IGRlcGxveW1lbnROb2RlICJNeVNRTCIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiQW1hem9uIFdlYiBTZXJ2aWNlcyAtIFJEUyBNeVNRTCBpbnN0YW5jZSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVzZXJEQkluc3RhbmNlID0gY29udGFpbmVySW5zdGFuY2UgdXNlckRCCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdWJzY3JpcHRpbkRCSW5zdGFuY2UgPSBjb250YWluZXJJbnN0YW5jZSBzdWJzY3JpcHRpb25EQgogICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RyZWFtREJJbnN0YW5jZSA9IGNvbnRhaW5lckluc3RhbmNlIHN0cmVhbURCCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjaGF0REJJbnN0YW5jZSA9IGNvbnRhaW5lckluc3RhbmNlIGNoYXREQgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICAgICByb3V0ZTUzIC0+IGFwaUdhdGV3YXlJbmZyYSAicmVkaXJlY3RzIHVzZXIgcmVxdWVzdHMgdG8gdGhlIEFQSSBnYXRld2F5IgogICAgICAgICAgICAgICAgICAgIGFwaUdhdGV3YXlJbmZyYSAtPiBlbGIgInNlbmQgdXNlciByZXF1ZXN0IHRvIgogICAgICAgICAgICAgICAgICAgIGxpdmVTdHJlYW1pbkFwcEluc3RhbmNlIC0+IHBheW1lbnRMYW1iZGEgInByb2Nlc3MgdXNlciBwYXltZW50cyIKICAgICAgICAgICAgICAgICAgICBsaXZlU3RyZWFtaW5BcHBJbnN0YW5jZSAtPiBraW5lc2lzICJ2aWRlbyBzdHJlYW1pbmciCiAgICAgICAgICAgICAgICAgICAgbGl2ZVN0cmVhbWluQXBwSW5zdGFuY2UgLT4gY2RuICJMb2FkIHN0YXRpYyByZXNvdXJjZXMiCiAgICAgICAgICAgICAgICAgICAgbGl2ZVN0cmVhbWluQXBwSW5zdGFuY2UgLT4gbWVkaWFDb252ZXJ0ICJDYWNoZXMgYW5kIGRlbGl2ZXJzIFZPRHMiCiAgICAgICAgICAgICAgICAgICAgbWVkaWFDb252ZXJ0IC0+IHMzICJNdWx0aW1lZGlhIGNvbnZlcnNpb24iCiAgICAgICAgICAgICAgICAgICAgY2hhdFNlcnZpY2VJbnN0YW5jZSAtPiByZWtvZ25pdGlvbiAic3BhbSBmaWx0ZXIgc3lzdGVtIgogICAgICAgICAgICAgICAgICAgIGVsYiAtPiBjaGF0U2VydmljZUluc3RhbmNlCiAgICAgICAgICAgICAgICAgICAgZWxiIC0+IGxpdmVTdHJlYW1pbkFwcEluc3RhbmNlCiAgICAgICAgICAgICAgICAgICAgcmVjb21lbmRhdGlvbkluc3RhbmNlIC0+IHNhZ2VtYWtlciAiVHJhaW5zIGFuZCBydW5zIHJlY29tbWVuZGF0aW9uIG1vZGVscyIKCiAgICAgICAgICAgICAgICAgICAgc2FnZW1ha2VyIC0+IGNoYXREQkluc3RhbmNlICJTdG9yZXMgdXNlciByZWNvbW1lbmRhdGlvbnMiCiAgICAgICAgICAgICAgICB9CgoKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KCiAgICB2aWV3cyB7CiAgICAgICAgdGhlbWUgZGVmYXVsdAogICAgICAgIHRoZW1lcyBodHRwczovL3N0YXRpYy5zdHJ1Y3R1cml6ci5jb20vdGhlbWVzL2FtYXpvbi13ZWItc2VydmljZXMtMjAyMy4wMS4zMS90aGVtZS5qc29uCiAgICAgICAgdGhlbWVzIGh0dHBzOi8vc3RhdGljLnN0cnVjdHVyaXpyLmNvbS90aGVtZXMvYW1hem9uLXdlYi1zZXJ2aWNlcy0yMDIyLjA0LjMwL3RoZW1lLmpzb24KICAgICAgICB0aGVtZXMgaHR0cHM6Ly9zdGF0aWMuc3RydWN0dXJpenIuY29tL3RoZW1lcy9hbWF6b24td2ViLXNlcnZpY2VzLTIwMjAuMDQuMzAvdGhlbWUuanNvbgoKICAgICAgICBzeXN0ZW1Db250ZXh0IHJzICJTeXN0ZW1Db250ZXh0VmlldyIgewogICAgICAgICAgICBkZXNjcmlwdGlvbiAiSGlnaC1sZXZlbCB2aWV3IG9mIHRoZSByZWNvbmNpbGlhdGlvbiBzeXN0ZW0gYXJjaGl0ZWN0dXJlLiIKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgcnMgbGl2ZXN0cmVhbSAiTGl2ZXN0cmVhbSBjb21wb25lbnQgdmlldyIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICB9CgogICAgICAgIGNvbnRhaW5lciBkYXRhYmFzZVNlcnZpY2UgZGF0YWJhc2UgIlN5c3RlbSBEYXRhYmFzZXMiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgfQoKICAgICAgICBkZXBsb3ltZW50IHJzIHByb2QgIlByb2R1Y3Rpb24iIHsKICAgICAgICAgICAgdGl0bGUgIlByb2R1Y3Rpb24gZGVwbG95bWVudCBvbiBBV1MiCiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgIH0KCiAgICAgICAgYnJhbmRpbmcgewogICAgICAgICAgICBsb2dvIGltYWdlcy9sb2dvLnBuZwogICAgICAgIH0KCiAgICAgICAgc3R5bGVzIHsKCiAgICAgICAgICAgIGVsZW1lbnQgIkNvbnRhaW5lciIgewogICAgICAgICAgICAgICAgc2hhcGUgcm91bmRlZGJveAogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgY3lsaW5kZXIKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KCgp9"
   },
   "views" : {
     "configuration" : {
-      "branding" : { },
+      "branding" : {
+        "logo" : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ8AAABaCAYAAACmPoTnAAAHEElEQVR4Xu2XQY5gtw1EDQSIF9l4lSPYx3AOYPhGAXIvL3wvb8YmEAJEUWSR+l+acTcbeLOgKIosVav/fPdlfubnK/1899eP/DMMXwMXGIZbuMAw3MIFhuEWLjAMt3CBYbiFCwzDLVxgGG7hAsNwCxcYhlu4wDDcwgWG4RYuMAy3cIFhuIULDMMtXGAYbuECw3ALFxiGW7jAa/z2+w9f/vjy79f47//+5c7AnAjpBfdW67C9FukR9+9Srfnzf/7p+pAY5ll0prfv6Jdfv3e9JLjAa7w9GJqPXYqFGQjzO3stnZ4Y1ZqoizDme3kwFJldCrJ6IRTMtXzr5rO5ypjv5cHQfN36H9l8qM2Y7+XBUGBcZ2QmwtzqPqRilCrdmraPMd/Lg1nzRReSnZmZCHOr+5Corx26Ne3L/unNJwKsYAOL2LhH0drRhbDatoYF87Am5kdEfSnZbEi15qpP2Y/rq1w8U2E6RnP8+NM/nCYJLnAcJqYVPiISh4ke1cY8y9vmwz0MVtOi8zEd2EzszJ05FrjAcdhgkUEsuEeRtciYQiQ65lX2rGCz7Vwaq2mxLxqurfIi2Jk7cyxwgeOwwZj5ov2V75hIdMyr7FkR9WZr4Z8qpFsT0ToYt7CZ2JljvkCQaD2rjzkWdlGV3jpgf92aanCMYw723jnz05oP81EQJvyqPuZY2EVZ2GwVsL+dmmwPm4ntH/MBus7MtxIec1h+BJutAs7PamafGRFsJnbmpzRfttfm4RqCdXHdwi7KkvVXBednNdn6CjYTqznmM6CY7DXAM3A9q50R9WdrMbA3VlPW2bwIm6lyJu7ZwAWOwwZD8S2YG4nBLgPPwHULuygLmw37rFCpyT41EDZT5Uzcs4ELHIcNhsawYK6CrwczH4qP61luBptt59KqNdnMFjZT9cyHuMBx2GCR+di+LrY2rlnYRXV63Lm0as3O68dmqp75EBc4DhvslvnsObhmkYuSXEalx2otrVepaY1Qff3GfAFWeAvmPcWeg2s7VGbroBfMalojyEy4vmLMF7AyX1XUDvYCcG2HymwddswnVF6/MV/AynzZnkiIyiVoLsZ3YH122TVf5Rd1zBfQNR/mKpVL0LMwvgPrs8uu+QT2izfmC1iZD3MsmKt8ZvOx2cd8AWi+TEgmAuYjegkY36EyW4cn5hOy1+/Tmm8Y/o8LDMMtXGAYbuECx2HfExb8/kMwv4J87wjZd0unxwz7bcVqYg9C9r2L9VewMy1M6wO4wHE6gjBxMX8H6QeF7/SY0THf6pfhqfmy/3QgqMEFXOA4OHQGExfzn2DFZ0ap0jGfgPM9NR/mZ7BaB3CB4+DQDNz/pFZG1ygVujXx9Xlivsp51VqHcIGjdAUR8EIsmPsUPWunzxVd86EBbppPyLQ+gAscZUeQTGDMfYqetdPniq75BGuAJ+bD3Aof2nw4rJJ9GD8RWMRUKpdfNZ+s29oZ2iuriT0IJ8y3q/UBXOAYkZAycLSmYC0F8xDMz4QXOubD2gxW06KmZbpEZonOknimQVTvEC5wjEwQJrJ9QSyYh2A+O0dNFfWKeR1YTYuagPUbmSU664nWB3CBY2SCyDrGLZHImIdgftSDUjWfvtYZ3bMRrYNxS1eXSs1V74dwgWPgkDjszp8DzEOsGSqXr3UruQy8xG7NyudIVxe2ntU8gAscIRNRczLz2TwL5uyCgneNsuKp+QS2B/vOzrG5mdarmodwgSNUBIlyFLxMAXO66OuCdVkvFbDuGzWRlVGic/STQsjMJ2Dvh3CBI0TDWkGy11FYCY05XeR824MSXWAHvEBWk62v6Ghi52RnYe+HcIEj4HArQb6G+RQ0ILsc6YWBF8hqSn70SxqBmmQa2n6yvFXdQ7jA62SDYi6uI7v5cvHsYu3lMKOgWSuwmnJ+ptUKNEl2hs1j52DdQ7jA62SC4GuB6wi+JriO2NyO4FnPwinzSV5FBwVNkp3xVOsDuMDrVAatgmLjOmJzmflsfnaJwknzVfpUunp0+BDmw6Ge0BXb5lYuVQVnRpE+9M8kQ89nNW1u9RfW6lGZrwNqfQAXeBUm+A62Pq4hNrdyOVXzddBXktW05qv0KnQ+Fbp8aPPhN8jOtwiuIbaXyoV+K+YTKlpUzYca72h9ABd4lWxAzFUwD7GC4xpi6/7dzFfpt6KFzenWx55exgVeBYdhggiZYXEvriG2bkdsZpQOu+braJHNpuevwFwku6cXcIHXyMTOBGGCC3pRGEds3eyCsG7We5cn5mM9qzmy2k+1xj0v4gKvsSsIE1z4LOZjM6r5MhNFdSs9sf0PcYFhuIULDMMtXGAYbuECw3ALFxiGW7jAMNzCBYbhFi4wDLdwgWG4hQsMwy1cYBhu4QLDcAsXGIZbuMAw3MIFhuEWLjAMt3CBYbiFCwzDFf4EpBTGUqf5FaoAAAAASUVORK5CYII="
+      },
       "lastSavedView" : "Production",
       "metadataSymbols" : "SquareBrackets",
       "styles" : {
@@ -753,7 +885,7 @@
         } ]
       },
       "terminology" : { },
-      "themes" : [ "https://static.structurizr.com/themes/default/theme.json", "https://static.structurizr.com/themes/amazon-web-services-2023.01.31/theme.json", "https://static.structurizr.com/themes/amazon-web-services-2022.04.30/theme.json" ]
+      "themes" : [ "https://static.structurizr.com/themes/default/theme.json", "https://static.structurizr.com/themes/amazon-web-services-2023.01.31/theme.json", "https://static.structurizr.com/themes/amazon-web-services-2022.04.30/theme.json", "https://static.structurizr.com/themes/amazon-web-services-2020.04.30/theme.json" ]
     },
     "containerViews" : [ {
       "description" : "Livestream component view",
@@ -975,79 +1107,144 @@
     } ],
     "deploymentViews" : [ {
       "dimensions" : {
-        "height" : 2156,
-        "width" : 3935
+        "height" : 2966,
+        "width" : 5216
       },
       "elements" : [ {
         "id" : "56",
-        "x" : 525,
-        "y" : 525
+        "x" : 875,
+        "y" : 875
       }, {
         "id" : "57",
-        "x" : 525,
-        "y" : 525
+        "x" : 875,
+        "y" : 875
       }, {
         "id" : "58",
-        "x" : 3059,
-        "y" : 1419
+        "x" : 433,
+        "y" : 433
       }, {
         "id" : "59",
-        "x" : 2469,
-        "y" : 1429
+        "x" : 1183,
+        "y" : 433
       }, {
         "id" : "60",
-        "x" : 1894,
-        "y" : 1439
+        "x" : 2385,
+        "y" : 1910
       }, {
         "id" : "61",
-        "x" : 1324,
-        "y" : 1429
+        "x" : 3700,
+        "y" : 165
       }, {
         "id" : "62",
-        "x" : 764,
-        "y" : 1429
+        "x" : 1815,
+        "y" : 433
       }, {
         "id" : "63",
-        "x" : 239,
-        "y" : 1429
+        "x" : 1795,
+        "y" : 1910
       }, {
         "id" : "64",
-        "x" : 175,
-        "y" : 175
+        "x" : 1130,
+        "y" : 1905
       }, {
         "id" : "65",
-        "x" : 2690,
-        "y" : 565
+        "x" : 1800,
+        "y" : 1325
       }, {
         "id" : "66",
-        "x" : 525,
-        "y" : 525
+        "x" : 4200,
+        "y" : 830
       }, {
         "id" : "67",
+        "x" : 1870,
+        "y" : 905
+      }, {
+        "id" : "68",
         "x" : 525,
         "y" : 525
       }, {
         "id" : "69",
-        "x" : 970,
-        "y" : 250
+        "x" : 3375,
+        "y" : 1415
+      }, {
+        "id" : "70",
+        "x" : 875,
+        "y" : 875
       }, {
         "id" : "71",
-        "x" : 525,
-        "y" : 525
+        "x" : 2680,
+        "y" : 130
+      }, {
+        "id" : "72",
+        "x" : 875,
+        "y" : 875
       }, {
         "id" : "73",
-        "x" : 975,
-        "y" : 855
+        "x" : 875,
+        "y" : 875
+      }, {
+        "id" : "75",
+        "x" : 2705,
+        "y" : 850
+      }, {
+        "id" : "78",
+        "x" : 875,
+        "y" : 875
+      }, {
+        "id" : "80",
+        "x" : 3375,
+        "y" : 835
       } ],
       "environment" : "Production Deployment",
       "key" : "Production",
       "order" : 4,
+      "paperSize" : "A2_Landscape",
       "relationships" : [ {
-        "id" : "70"
+        "id" : "100"
       }, {
-        "id" : "74"
+        "id" : "101"
       }, {
-        "id" : "75"
+        "id" : "102"
+      }, {
+        "id" : "103"
+      }, {
+        "id" : "104",
+        "vertices" : [ {
+          "x" : 2400,
+          "y" : 1655
+        } ]
+      }, {
+        "id" : "105"
+      }, {
+        "id" : "106"
+      }, {
+        "id" : "107"
+      }, {
+        "id" : "108",
+        "vertices" : [ {
+          "x" : 3590,
+          "y" : 580
+        } ]
+      }, {
+        "id" : "109",
+        "vertices" : [ {
+          "x" : 2475,
+          "y" : 795
+        } ]
+      }, {
+        "id" : "110"
+      }, {
+        "id" : "76"
+      }, {
+        "id" : "77",
+        "vertices" : [ {
+          "x" : 2905,
+          "y" : 1565
+        } ]
+      }, {
+        "id" : "81"
+      }, {
+        "id" : "82"
       } ],
       "softwareSystemId" : "8",
       "title" : "Production deployment on AWS"
