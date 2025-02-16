@@ -39,8 +39,6 @@ workspace "Talent Arena" "System Design for a livestream platform" {
             apiGateway -> liveStreaming "Routes streaming requests"
             apiGateway -> chatservice "Routes chat messages"
 
-            apiGateway -> paymentService "Processes payments and subscriptions"
-
             chatService -> chatDB "store chat history"
             chatService -> userManagament "Gets user info"
             paymentService -> subscriptionDB "Updates user subscription status"
@@ -50,7 +48,7 @@ workspace "Talent Arena" "System Design for a livestream platform" {
             liveStreaming -> chatService "Allows instant messaging"
             liveStreaming -> userManagament "Manage Users"
             liveStreaming -> videoStorage "Archives completed streams for VOD playback"
-            liveStreaming -> paymentService "process user payments"
+            userManagament -> paymentService "process user payments"
             videoStorage -> contentDelivery "Caches and delivers VODs"
 
             userManagament -> userDB "Manages user info"
@@ -66,107 +64,112 @@ workspace "Talent Arena" "System Design for a livestream platform" {
         prod = deploymentEnvironment "Production Deployment" {
             deploymentNode "Amazon Web Services" {
                 tags "Amazon Web Services - Cloud Map"
-                region = deploymentNode "eu-west-2" {
-                    description "AWS - Europe Zone"
-                    technology "AWS"
-                    tags "Amazon Web Services - Region"
 
-                    route53 = infrastructureNode "Route 53" {
-                        tags "Amazon Web Services - Route 53"
-                    }
+                deploymentNode "VPC" {
+                    tags "Amazon Web Services - Virtual private cloud VPC"
 
-                    apiGatewayInfra = infrastructureNode "API Gateway" {
-                        tags "Amazon Web Services - API Gateway"
-                    }
+                    region = deploymentNode "eu-west-2" {
+                        description "AWS - Europe Zone"
+                        technology "AWS"
+                        tags "Amazon Web Services - Region"
 
-                    kinesis = infrastructureNode "Kinesis" "Video streaming" {
-                        tags "Amazon Web Services - Kinesis Video Streams"
-                    }
-                    sagemaker = infrastructureNode "SageMaker" "Machine learning model training and inference" {
-                        tags "Amazon Web Services - SageMaker"
-                    }
+                        route53 = infrastructureNode "Route 53" {
+                            tags "Amazon Web Services - Route 53"
+                        }
+                        apiGatewayInfra = infrastructureNode "API Gateway" {
+                            tags "Amazon Web Services - API Gateway"
+                        }
+                        kinesis = infrastructureNode "Kinesis" "Video streaming" {
+                            tags "Amazon Web Services - Kinesis Video Streams"
+                        }
+                        sagemaker = infrastructureNode "SageMaker" "Machine learning model training and inference" {
+                            tags "Amazon Web Services - SageMaker"
+                        }
+                        elb = infrastructureNode "Elastic Load Balancer" {
+                            description "Automatically distributes incoming application traffic."
+                            tags "Amazon Web Services - Elastic Load Balancing"
+                        }
+                        cdn = infrastructureNode "AWS CDN" "Amazon CloudFront" {
+                            tags "Amazon Web Services - CloudFront"
+                        }
+                        s3 = infrastructureNode "Storage" "AWS - S3" {
+                            tags "Amazon Web Services - Simple Storage Service"
+                        }
+                        mediaConvert = infrastructureNode "MediaConvert" "Multimedia conversion" {
+                            tags "Amazon Web Services - Elemental MediaConvert"
+                        }
+                        rekognition = infrastructureNode "Rekognition" "spam filter system" {
+                            tags "Amazon Web Services - Rekognition"
+                        }
+                        paymentLambda = infrastructureNode "Payment Service" {
+                            tags "Amazon Web Services - Lambda"
+                        }
 
-                    elb = infrastructureNode "Elastic Load Balancer" {
-                        description "Automatically distributes incoming application traffic."
-                        tags "Amazon Web Services - Elastic Load Balancing"
-                    }
-                    cdn = infrastructureNode "AWS CDN" "Amazon CloudFront" {
-                        tags "Amazon Web Services - CloudFront"
-                    }
-                    s3 = infrastructureNode "Storage" "AWS - S3" {
-                        tags "Amazon Web Services - Simple Storage Service"
-                    }
-                    mediaConvert = infrastructureNode "MediaConvert" "Multimedia conversion" {
-                        tags "Amazon Web Services - Elemental MediaConvert"
-                    }
-                    rekognition = infrastructureNode "Rekognition" "spam filter system" {
-                        tags "Amazon Web Services - Rekognition"
-                    }
-                    paymentLambda = infrastructureNode "Payment Service" {
-                        tags "Amazon Web Services - Lambda"
-                    }
-                    deploymentNode "EC2 - User Service" {
-                        tags "Amazon Web Services - EC2"
-                        userInstance = containerInstance userManagament
-
-                    }
-
-                    deploymentNode "EC2 - Recommendation Engine" {
-                        tags "Amazon Web Services - EC2"
-                        recomendationInstance = containerInstance recommendationEngine
-                    }
-
-                    deploymentNode "Amazon - Auto Scaling Groups" "Manages elastic EC2 configuration" {
-                        tags "Amazon Web Services - Application Auto Scaling"
-
-                        deploymentNode "EC2 - LiveStreaming" "This EC2 instance is part of an Auto Scaling Group" {
+                        deploymentNode "EC2 - User Service" {
                             tags "Amazon Web Services - EC2"
-                            softwareSystemInstance rs
-                            liveStreaminAppInstance = containerInstance liveStreaming
+                            userInstance = containerInstance userManagament
 
                         }
-                        deploymentNode "EC2 - Chat Service" "This EC2 instance is part of an Auto Scaling Group" {
+                        deploymentNode "EC2 - Recommendation Engine" {
                             tags "Amazon Web Services - EC2"
-                            softwareSystemInstance rs
-                            chatServiceInstance = containerInstance chatService
+                            recomendationInstance = containerInstance recommendationEngine
                         }
-                    }
-                    group "Databases" {
-                        #tags "Amazon Web Services - RDS"
+                        deploymentNode "Amazon - Auto Scaling Groups" "Manages elastic EC2 configuration" {
+                            tags "Amazon Web Services - Application Auto Scaling"
 
-                        mysqlNode = deploymentNode "MySQL" {
-                            tags "Amazon Web Services - RDS MySQL instance"
-                            userDBInstance = infrastructureNode "user DB" "MySQL" {
-                                tags "Amazon Web Services - RDS MySQL instance"
+                            deploymentNode "EC2 - LiveStreaming" "This EC2 instance is part of an Auto Scaling Group" {
+                                tags "Amazon Web Services - EC2"
+                                softwareSystemInstance rs
+                                liveStreaminAppInstance = containerInstance liveStreaming
+
                             }
-                            subscriptinDBInstance = infrastructureNode "subscription DB" {
-                                tags "Amazon Web Services - RDS MySQL instance"
-                            }
-                            streamDBInstance = infrastructureNode "stream DB" {
-                                tags "Amazon Web Services - DynamoDB"
-                            }
-                            chatDBInstance = infrastructureNode "Chat DB" "PostgreSQL" {
-                                tags "Amazon Web Services - DynamoDB"
+                            deploymentNode "EC2 - Chat Service" "This EC2 instance is part of an Auto Scaling Group" {
+                                tags "Amazon Web Services - EC2"
+                                softwareSystemInstance rs
+                                chatServiceInstance = containerInstance chatService
                             }
                         }
+                        group "Databases" {
+                            mysqlNode = deploymentNode "MySQL" {
+                                tags "Amazon Web Services - RDS MySQL instance"
+                                userDBInstance = infrastructureNode "user DB" "MySQL" {
+                                    tags "Amazon Web Services - RDS MySQL instance"
+                                }
+                                subscriptinDBInstance = infrastructureNode "subscription DB" {
+                                    tags "Amazon Web Services - RDS MySQL instance"
+                                }
+                                streamDBInstance = infrastructureNode "stream DB" {
+                                    tags "Amazon Web Services - DynamoDB"
+                                }
+                                chatDBInstance = infrastructureNode "Chat DB" "PostgreSQL" {
+                                    tags "Amazon Web Services - DynamoDB"
+                                }
+                                recommendationDBInstance = infrastructureNode "Recommendation DB" "PostgreSQL" {
+                                    tags "Amazon Web Services - DynamoDB"
+                                }
+                            }
+                        }
+
+                        route53 -> apiGatewayInfra "redirects user requests to the API gateway"
+                        apiGatewayInfra -> elb "send user request to"
+                        userInstance -> paymentLambda "process user payments"
+                        liveStreaminAppInstance -> kinesis "video streaming"
+                        liveStreaminAppInstance -> cdn "Load static resources"
+                        liveStreaminAppInstance -> mediaConvert "Caches and delivers VODs"
+                        mediaConvert -> s3 "Multimedia conversion"
+                        chatServiceInstance -> rekognition "spam filter system"
+                        elb -> chatServiceInstance
+                        elb -> liveStreaminAppInstance
+                        recomendationInstance -> sagemaker "Trains and runs recommendation models"
+
+                        sagemaker -> recommendationDBInstance "Stores user recommendations"
+                        rekognition -> chatDBInstance "spam filter system"
+                        userInstance -> userDBInstance "Manages user info"
+                        userInstance -> subscriptinDBInstance "Updates user subscription status"
+                        liveStreaminAppInstance -> streamDBInstance "Caches and delivers VODs"
                     }
-
-                    route53 -> apiGatewayInfra "redirects user requests to the API gateway"
-                    apiGatewayInfra -> elb "send user request to"
-                    liveStreaminAppInstance -> paymentLambda "process user payments"
-                    liveStreaminAppInstance -> kinesis "video streaming"
-                    liveStreaminAppInstance -> cdn "Load static resources"
-                    liveStreaminAppInstance -> mediaConvert "Caches and delivers VODs"
-                    mediaConvert -> s3 "Multimedia conversion"
-                    chatServiceInstance -> rekognition "spam filter system"
-                    elb -> chatServiceInstance
-                    elb -> liveStreaminAppInstance
-                    recomendationInstance -> sagemaker "Trains and runs recommendation models"
-
-                    sagemaker -> chatDBInstance "Stores user recommendations"
-                    userInstance -> userDBInstance "Manages user info"
-                    liveStreaminAppInstance -> streamDBInstance "Caches and delivers VODs"
                 }
+
             }
         }
     }
