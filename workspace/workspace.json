@@ -3,8 +3,7 @@
   "description" : "System Design for a livestream platform",
   "documentation" : { },
   "id" : 1,
-  "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-02-16T21:59:35Z",
+  "lastModifiedDate" : "2025-02-18T09:11:13Z",
   "model" : {
     "deploymentNodes" : [ {
       "children" : [ {
@@ -51,7 +50,7 @@
             "instances" : "1",
             "name" : "EC2 - User Service",
             "properties" : {
-              "structurizr.dsl.identifier" : "8b575a85-c894-430c-b47e-686fa34207e8"
+              "structurizr.dsl.identifier" : "ea73c3cb-5e83-4abf-bba1-fa58750d5919"
             },
             "tags" : "Element,Deployment Node,Amazon Web Services - EC2"
           }, {
@@ -78,7 +77,7 @@
             "instances" : "1",
             "name" : "EC2 - Recommendation Engine",
             "properties" : {
-              "structurizr.dsl.identifier" : "22f41b97-8dca-4e8d-8e4a-189bc3252f7d"
+              "structurizr.dsl.identifier" : "34d91619-a47c-4ab5-8a29-08dc6b79ca4c"
             },
             "tags" : "Element,Deployment Node,Amazon Web Services - EC2"
           }, {
@@ -107,7 +106,7 @@
                 }, {
                   "description" : "Allows instant messaging",
                   "destinationId" : "86",
-                  "id" : "87",
+                  "id" : "88",
                   "linkedRelationshipId" : "39",
                   "sourceId" : "81"
                 }, {
@@ -149,7 +148,7 @@
               "instances" : "1",
               "name" : "EC2 - LiveStreaming",
               "properties" : {
-                "structurizr.dsl.identifier" : "bc9bba9c-3367-4351-96f1-ab8cafec71e4"
+                "structurizr.dsl.identifier" : "7eb212e9-cd42-44da-b615-183e1eb08702"
               },
               "softwareSystemInstances" : [ {
                 "deploymentGroups" : [ "Default" ],
@@ -157,7 +156,7 @@
                 "id" : "80",
                 "instanceId" : 1,
                 "properties" : {
-                  "structurizr.dsl.identifier" : "5d355c6d-d7b8-4c2c-9a38-567f088023ae"
+                  "structurizr.dsl.identifier" : "2ba377d2-0db9-44c0-8a98-a15820e92cf1"
                 },
                 "softwareSystemId" : "8",
                 "tags" : "Software System Instance"
@@ -176,7 +175,7 @@
                 "relationships" : [ {
                   "description" : "Gets user info",
                   "destinationId" : "75",
-                  "id" : "88",
+                  "id" : "87",
                   "linkedRelationshipId" : "30",
                   "sourceId" : "86"
                 }, {
@@ -200,7 +199,7 @@
               "instances" : "1",
               "name" : "EC2 - Chat Service",
               "properties" : {
-                "structurizr.dsl.identifier" : "4d158ecd-11fb-4c02-8a65-53c788ec920f"
+                "structurizr.dsl.identifier" : "112ab518-69c4-487a-96ce-60a998329538"
               },
               "softwareSystemInstances" : [ {
                 "deploymentGroups" : [ "Default" ],
@@ -208,7 +207,7 @@
                 "id" : "85",
                 "instanceId" : 1,
                 "properties" : {
-                  "structurizr.dsl.identifier" : "350db9d4-ffc6-471f-9ef3-09a0a840e3dc"
+                  "structurizr.dsl.identifier" : "1335a642-8e92-4017-9d07-b6f816c3e3eb"
                 },
                 "softwareSystemId" : "8",
                 "tags" : "Software System Instance"
@@ -221,7 +220,7 @@
             "instances" : "1",
             "name" : "Amazon - Auto Scaling Groups",
             "properties" : {
-              "structurizr.dsl.identifier" : "ced120a4-36cc-4f4d-b4a5-e4623173fcfb"
+              "structurizr.dsl.identifier" : "1d6ece47-0040-4cfe-80e1-fcba1661e585"
             },
             "tags" : "Element,Deployment Node,Amazon Web Services - Application Auto Scaling"
           }, {
@@ -321,7 +320,7 @@
           "instances" : "1",
           "name" : "eu-west-2",
           "properties" : {
-            "structurizr.dsl.identifier" : "7b03e66d-e03e-4ba4-a52f-f2d296d916ae"
+            "structurizr.dsl.identifier" : "9a1730eb-d84f-4323-8fc6-87b8c7f01155"
           },
           "tags" : "Element,Deployment Node,Amazon Web Services - Region",
           "technology" : "AWS"
@@ -437,7 +436,7 @@
             "instances" : "1",
             "name" : "EC2 - User Service",
             "properties" : {
-              "structurizr.dsl.identifier" : "25caf938-4236-46fa-8d86-82a3ef17c007"
+              "structurizr.dsl.identifier" : "d0f45218-e719-4c71-85c6-a8fb7114a853"
             },
             "tags" : "Element,Deployment Node,Amazon Web Services - EC2"
           }, {
@@ -464,7 +463,7 @@
             "instances" : "1",
             "name" : "EC2 - Recommendation Engine",
             "properties" : {
-              "structurizr.dsl.identifier" : "57c49320-ef00-4afb-a6e4-1d48dcb3fafd"
+              "structurizr.dsl.identifier" : "8da107a0-c0dc-4976-b6c1-ca35899f2e55"
             },
             "tags" : "Element,Deployment Node,Amazon Web Services - EC2"
           }, {
@@ -479,21 +478,21 @@
                   "structurizr.dsl.identifier" : "livestreamingeast"
                 },
                 "relationships" : [ {
-                  "description" : "suggest content",
-                  "destinationId" : "130",
-                  "id" : "135",
-                  "linkedRelationshipId" : "34",
-                  "sourceId" : "134"
-                }, {
                   "description" : "Manage Users",
                   "destinationId" : "128",
-                  "id" : "136",
+                  "id" : "135",
                   "linkedRelationshipId" : "40",
+                  "sourceId" : "134"
+                }, {
+                  "description" : "suggest content",
+                  "destinationId" : "130",
+                  "id" : "136",
+                  "linkedRelationshipId" : "34",
                   "sourceId" : "134"
                 }, {
                   "description" : "Allows instant messaging",
                   "destinationId" : "139",
-                  "id" : "140",
+                  "id" : "141",
                   "linkedRelationshipId" : "39",
                   "sourceId" : "134"
                 }, {
@@ -535,7 +534,7 @@
               "instances" : "1",
               "name" : "EC2 - LiveStreaming",
               "properties" : {
-                "structurizr.dsl.identifier" : "533858e5-c95d-44a9-8b68-622eaa227b9f"
+                "structurizr.dsl.identifier" : "2c405c20-b391-4c60-8774-5035d8b000cf"
               },
               "softwareSystemInstances" : [ {
                 "deploymentGroups" : [ "Default" ],
@@ -543,7 +542,7 @@
                 "id" : "133",
                 "instanceId" : 1,
                 "properties" : {
-                  "structurizr.dsl.identifier" : "3472f5f2-f0f4-4e21-8f21-e15d95dd19d0"
+                  "structurizr.dsl.identifier" : "7b0c5318-a3af-4344-b7bb-7681792d7619"
                 },
                 "softwareSystemId" : "8",
                 "tags" : "Software System Instance"
@@ -562,7 +561,7 @@
                 "relationships" : [ {
                   "description" : "Gets user info",
                   "destinationId" : "128",
-                  "id" : "141",
+                  "id" : "140",
                   "linkedRelationshipId" : "30",
                   "sourceId" : "139"
                 }, {
@@ -586,7 +585,7 @@
               "instances" : "1",
               "name" : "EC2 - Chat Service",
               "properties" : {
-                "structurizr.dsl.identifier" : "3a457f31-fd3a-4e3c-85f9-a86d3cd4eafe"
+                "structurizr.dsl.identifier" : "fd5ac48a-3ce0-4a63-a08b-43cc5c4490ba"
               },
               "softwareSystemInstances" : [ {
                 "deploymentGroups" : [ "Default" ],
@@ -594,7 +593,7 @@
                 "id" : "138",
                 "instanceId" : 1,
                 "properties" : {
-                  "structurizr.dsl.identifier" : "f15bfb38-cc75-4a18-8593-9fae360f622f"
+                  "structurizr.dsl.identifier" : "8bf85796-fcb0-41e0-a416-0c8a69f82e7f"
                 },
                 "softwareSystemId" : "8",
                 "tags" : "Software System Instance"
@@ -607,7 +606,7 @@
             "instances" : "1",
             "name" : "Amazon - Auto Scaling Groups",
             "properties" : {
-              "structurizr.dsl.identifier" : "33c30832-dade-42d3-a9a1-fc99657da8c7"
+              "structurizr.dsl.identifier" : "2294bf7d-e974-4a45-926c-d341d3f9c13d"
             },
             "tags" : "Element,Deployment Node,Amazon Web Services - Application Auto Scaling"
           } ],
@@ -644,7 +643,7 @@
           "instances" : "1",
           "name" : "eu-east-1",
           "properties" : {
-            "structurizr.dsl.identifier" : "f8c5ccdd-ebee-4583-a0fe-e18fa9079b48"
+            "structurizr.dsl.identifier" : "7beaf30b-6b6d-4411-b19a-10c564d6af1c"
           },
           "tags" : "Element,Deployment Node,Amazon Web Services - Region",
           "technology" : "AWS"
@@ -857,7 +856,7 @@
         "instances" : "1",
         "name" : "VPC",
         "properties" : {
-          "structurizr.dsl.identifier" : "564d9672-b79f-42b1-9fac-1a683b261c04"
+          "structurizr.dsl.identifier" : "c620d483-e520-41ae-8719-4758b3727d35"
         },
         "tags" : "Element,Deployment Node,Amazon Web Services - Virtual private cloud VPC"
       } ],
@@ -866,7 +865,7 @@
       "instances" : "1",
       "name" : "Amazon Web Services",
       "properties" : {
-        "structurizr.dsl.identifier" : "a5ebe984-4e7e-4c6f-89b6-7ed6c97b9335"
+        "structurizr.dsl.identifier" : "17248e09-9abc-4776-9757-03ee3dbb335f"
       },
       "tags" : "Element,Deployment Node,Amazon Web Services - Cloud Map"
     } ],
@@ -1260,7 +1259,7 @@
         "id" : "49",
         "name" : "Paypal",
         "properties" : {
-          "structurizr.dsl.identifier" : "b56062c6-23ad-4fa6-b3cd-e05c0cfb31cb"
+          "structurizr.dsl.identifier" : "681652b8-d7d2-4b8a-9283-6f2cc52c6f14"
         },
         "tags" : "Element,Container"
       }, {
@@ -1269,7 +1268,7 @@
         "id" : "50",
         "name" : "Stripe",
         "properties" : {
-          "structurizr.dsl.identifier" : "5deb2e14-e236-42b2-93a9-aee08b9c4809"
+          "structurizr.dsl.identifier" : "5092c3ba-5f4d-41f2-8019-64761c089f2b"
         },
         "tags" : "Element,Container"
       } ],
@@ -1294,7 +1293,6 @@
         "logo" : "data:image/png;base64,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"
       },
       "lastSavedView" : "Production",
-      "metadataSymbols" : "SquareBrackets",
       "styles" : {
         "elements" : [ {
           "shape" : "RoundedBox",
@@ -1869,17 +1867,17 @@
       }, {
         "id" : "135",
         "vertices" : [ {
-          "x" : 4200,
-          "y" : 1541
-        } ]
-      }, {
-        "id" : "136",
-        "vertices" : [ {
           "x" : 3535,
           "y" : 1770
         }, {
           "x" : 3554,
           "y" : 2245
+        } ]
+      }, {
+        "id" : "136",
+        "vertices" : [ {
+          "x" : 4200,
+          "y" : 1541
         } ]
       }, {
         "id" : "140"

@@ -1,5 +1,8 @@
 workspace "Talent Arena" "System Design for a livestream platform" {
 
+    !adrs adrs
+    !docs docs
+
     model {
         user = person "User" "Watches live streams and interacts with the platform"
         streamer = person "Streamer" "Broadcasts live video streams"
